@@ -12,6 +12,7 @@ class AuthState with _$AuthState {
     required Option<Either<AuthFailure, Unit>>
         updateEmailFailureOrSuccessOption,
     required bool isNetworkAvailable,
+    required String orderBy,
   }) = _AuthState;
 
   factory AuthState.initial() => AuthState(
@@ -22,5 +23,6 @@ class AuthState with _$AuthState {
         authFailureOrSuccessOption: none(),
         updateEmailFailureOrSuccessOption: none(),
         isNetworkAvailable: true,
+        orderBy: 'name',
       );
 }

@@ -6,6 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/domain/auth/auth_failure.dart';
 import 'package:flutter_template/domain/auth/i_auth_facade.dart';
+import 'package:flutter_template/domain/auth/info_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -139,6 +140,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
         yield state.copyWith(
           isNetworkAvailable: isNetworkAvailable,
+        );
+      },
+      addData: (e) async* {
+        final opt = await _authFacade.insertData(data: e.data);
+      },
+      changeSortByOrder: (e) async* {
+        yield state.copyWith(
+          orderBy: e.orderBy,
         );
       },
     );

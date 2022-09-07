@@ -18,7 +18,7 @@ class SplashPage extends StatelessWidget {
           }
         } else {
           Future.delayed(const Duration(milliseconds: 1000), () {
-            AutoRouter.of(context).replace(const OnboardingRoute());
+            AutoRouter.of(context).replace(const LandingRoute());
           });
         }
       },

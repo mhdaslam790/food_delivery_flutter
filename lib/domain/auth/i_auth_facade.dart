@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_template/domain/auth/auth_failure.dart';
+import 'package:flutter_template/domain/auth/info_model.dart';
 
 abstract class IAuthFacade {
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
@@ -21,4 +24,5 @@ abstract class IAuthFacade {
   Future<Either<AuthFailure, Unit>> resetPassword({
     required String emailAddress,
   });
+  Future<Either<AuthFailure, Unit>> insertData({required InfoModel data});
 }

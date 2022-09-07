@@ -25,4 +25,7 @@ class AuthEvent with _$AuthEvent {
   const factory AuthEvent.updateConnectivityStatus(ConnectivityResult status) =
       _UpdateConnectivityStatus;
   const factory AuthEvent.checkConnectivityStatus() = _CheckConnectivityStatus;
+  const factory AuthEvent.addData({required InfoModel data}) = _AddData;
+  const factory AuthEvent.changeSortByOrder({required String orderBy}) =
+      _changeSortByOrder;
 }

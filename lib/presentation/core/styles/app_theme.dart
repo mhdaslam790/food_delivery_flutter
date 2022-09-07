@@ -66,6 +66,11 @@ mixin AppTheme {
           elevation: 0,
           // brightness: Brightness.light,
           centerTitle: true,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+          ),
         ),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         visualDensity: VisualDensity.adaptivePlatformDensity,

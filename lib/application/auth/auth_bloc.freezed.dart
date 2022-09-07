@@ -68,6 +68,18 @@ class _$AuthEventTearOff {
   _CheckConnectivityStatus checkConnectivityStatus() {
     return const _CheckConnectivityStatus();
   }
+
+  _AddData addData({required InfoModel data}) {
+    return _AddData(
+      data: data,
+    );
+  }
+
+  _changeSortByOrder changeSortByOrder({required String orderBy}) {
+    return _changeSortByOrder(
+      orderBy: orderBy,
+    );
+  }
 }
 
 /// @nodoc
@@ -89,6 +101,8 @@ mixin _$AuthEvent {
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -103,6 +117,8 @@ mixin _$AuthEvent {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -117,6 +133,8 @@ mixin _$AuthEvent {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,6 +154,8 @@ mixin _$AuthEvent {
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -151,6 +171,8 @@ mixin _$AuthEvent {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -166,6 +188,8 @@ mixin _$AuthEvent {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -278,6 +302,8 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
   }) {
     return registerWithEmailAndPassword(email, password);
   }
@@ -295,6 +321,8 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
   }) {
     return registerWithEmailAndPassword?.call(email, password);
   }
@@ -312,6 +340,8 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (registerWithEmailAndPassword != null) {
@@ -337,6 +367,8 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
   }) {
     return registerWithEmailAndPassword(this);
   }
@@ -355,6 +387,8 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
   }) {
     return registerWithEmailAndPassword?.call(this);
   }
@@ -373,6 +407,8 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (registerWithEmailAndPassword != null) {
@@ -485,6 +521,8 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
   }) {
     return signInWithEmailAndPassword(email, password);
   }
@@ -502,6 +540,8 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
   }) {
     return signInWithEmailAndPassword?.call(email, password);
   }
@@ -519,6 +559,8 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (signInWithEmailAndPassword != null) {
@@ -544,6 +586,8 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
   }) {
     return signInWithEmailAndPassword(this);
   }
@@ -562,6 +606,8 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
   }) {
     return signInWithEmailAndPassword?.call(this);
   }
@@ -580,6 +626,8 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (signInWithEmailAndPassword != null) {
@@ -651,6 +699,8 @@ class _$SignOut implements SignOut {
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
   }) {
     return signOut();
   }
@@ -668,6 +718,8 @@ class _$SignOut implements SignOut {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
   }) {
     return signOut?.call();
   }
@@ -685,6 +737,8 @@ class _$SignOut implements SignOut {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -710,6 +764,8 @@ class _$SignOut implements SignOut {
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
   }) {
     return signOut(this);
   }
@@ -728,6 +784,8 @@ class _$SignOut implements SignOut {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
   }) {
     return signOut?.call(this);
   }
@@ -746,6 +804,8 @@ class _$SignOut implements SignOut {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -811,6 +871,8 @@ class _$CheckAuthState implements CheckAuthState {
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
   }) {
     return checkAuthState();
   }
@@ -828,6 +890,8 @@ class _$CheckAuthState implements CheckAuthState {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
   }) {
     return checkAuthState?.call();
   }
@@ -845,6 +909,8 @@ class _$CheckAuthState implements CheckAuthState {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (checkAuthState != null) {
@@ -870,6 +936,8 @@ class _$CheckAuthState implements CheckAuthState {
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
   }) {
     return checkAuthState(this);
   }
@@ -888,6 +956,8 @@ class _$CheckAuthState implements CheckAuthState {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
   }) {
     return checkAuthState?.call(this);
   }
@@ -906,6 +976,8 @@ class _$CheckAuthState implements CheckAuthState {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (checkAuthState != null) {
@@ -997,6 +1069,8 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
   }) {
     return sendEmailConfirmation(email);
   }
@@ -1014,6 +1088,8 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
   }) {
     return sendEmailConfirmation?.call(email);
   }
@@ -1031,6 +1107,8 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (sendEmailConfirmation != null) {
@@ -1056,6 +1134,8 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
   }) {
     return sendEmailConfirmation(this);
   }
@@ -1074,6 +1154,8 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
   }) {
     return sendEmailConfirmation?.call(this);
   }
@@ -1092,6 +1174,8 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (sendEmailConfirmation != null) {
@@ -1163,6 +1247,8 @@ class _$_DeleteAccount implements _DeleteAccount {
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
   }) {
     return deleteAcccount();
   }
@@ -1180,6 +1266,8 @@ class _$_DeleteAccount implements _DeleteAccount {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
   }) {
     return deleteAcccount?.call();
   }
@@ -1197,6 +1285,8 @@ class _$_DeleteAccount implements _DeleteAccount {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (deleteAcccount != null) {
@@ -1222,6 +1312,8 @@ class _$_DeleteAccount implements _DeleteAccount {
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
   }) {
     return deleteAcccount(this);
   }
@@ -1240,6 +1332,8 @@ class _$_DeleteAccount implements _DeleteAccount {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
   }) {
     return deleteAcccount?.call(this);
   }
@@ -1258,6 +1352,8 @@ class _$_DeleteAccount implements _DeleteAccount {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (deleteAcccount != null) {
@@ -1349,6 +1445,8 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
   }) {
     return updateEmailAddress(updatedEmail);
   }
@@ -1366,6 +1464,8 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
   }) {
     return updateEmailAddress?.call(updatedEmail);
   }
@@ -1383,6 +1483,8 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (updateEmailAddress != null) {
@@ -1408,6 +1510,8 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
   }) {
     return updateEmailAddress(this);
   }
@@ -1426,6 +1530,8 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
   }) {
     return updateEmailAddress?.call(this);
   }
@@ -1444,6 +1550,8 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (updateEmailAddress != null) {
@@ -1542,6 +1650,8 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
   }) {
     return updateConnectivityStatus(status);
   }
@@ -1559,6 +1669,8 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
   }) {
     return updateConnectivityStatus?.call(status);
   }
@@ -1576,6 +1688,8 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (updateConnectivityStatus != null) {
@@ -1601,6 +1715,8 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
   }) {
     return updateConnectivityStatus(this);
   }
@@ -1619,6 +1735,8 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
   }) {
     return updateConnectivityStatus?.call(this);
   }
@@ -1637,6 +1755,8 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (updateConnectivityStatus != null) {
@@ -1710,6 +1830,8 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
   }) {
     return checkConnectivityStatus();
   }
@@ -1727,6 +1849,8 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
   }) {
     return checkConnectivityStatus?.call();
   }
@@ -1744,6 +1868,8 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (checkConnectivityStatus != null) {
@@ -1769,6 +1895,8 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
   }) {
     return checkConnectivityStatus(this);
   }
@@ -1787,6 +1915,8 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
   }) {
     return checkConnectivityStatus?.call(this);
   }
@@ -1805,6 +1935,8 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
     required TResult orElse(),
   }) {
     if (checkConnectivityStatus != null) {
@@ -1816,6 +1948,408 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
 
 abstract class _CheckConnectivityStatus implements AuthEvent {
   const factory _CheckConnectivityStatus() = _$_CheckConnectivityStatus;
+}
+
+/// @nodoc
+abstract class _$AddDataCopyWith<$Res> {
+  factory _$AddDataCopyWith(_AddData value, $Res Function(_AddData) then) =
+      __$AddDataCopyWithImpl<$Res>;
+  $Res call({InfoModel data});
+}
+
+/// @nodoc
+class __$AddDataCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$AddDataCopyWith<$Res> {
+  __$AddDataCopyWithImpl(_AddData _value, $Res Function(_AddData) _then)
+      : super(_value, (v) => _then(v as _AddData));
+
+  @override
+  _AddData get _value => super._value as _AddData;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+  }) {
+    return _then(_AddData(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as InfoModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AddData implements _AddData {
+  const _$_AddData({required this.data});
+
+  @override
+  final InfoModel data;
+
+  @override
+  String toString() {
+    return 'AuthEvent.addData(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _AddData &&
+            const DeepCollectionEquality().equals(other.data, data));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+
+  @JsonKey(ignore: true)
+  @override
+  _$AddDataCopyWith<_AddData> get copyWith =>
+      __$AddDataCopyWithImpl<_AddData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+        registerWithEmailAndPassword,
+    required TResult Function(String email, String password)
+        signInWithEmailAndPassword,
+    required TResult Function() signOut,
+    required TResult Function() checkAuthState,
+    required TResult Function(String email) sendEmailConfirmation,
+    required TResult Function() deleteAcccount,
+    required TResult Function(String updatedEmail) updateEmailAddress,
+    required TResult Function(ConnectivityResult status)
+        updateConnectivityStatus,
+    required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
+  }) {
+    return addData(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String email, String password)?
+        registerWithEmailAndPassword,
+    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function()? signOut,
+    TResult Function()? checkAuthState,
+    TResult Function(String email)? sendEmailConfirmation,
+    TResult Function()? deleteAcccount,
+    TResult Function(String updatedEmail)? updateEmailAddress,
+    TResult Function(ConnectivityResult status)? updateConnectivityStatus,
+    TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
+  }) {
+    return addData?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)?
+        registerWithEmailAndPassword,
+    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function()? signOut,
+    TResult Function()? checkAuthState,
+    TResult Function(String email)? sendEmailConfirmation,
+    TResult Function()? deleteAcccount,
+    TResult Function(String updatedEmail)? updateEmailAddress,
+    TResult Function(ConnectivityResult status)? updateConnectivityStatus,
+    TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
+    required TResult orElse(),
+  }) {
+    if (addData != null) {
+      return addData(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RegisterWithEmailAndPassword value)
+        registerWithEmailAndPassword,
+    required TResult Function(_SignInWithEmailAndPassword value)
+        signInWithEmailAndPassword,
+    required TResult Function(SignOut value) signOut,
+    required TResult Function(CheckAuthState value) checkAuthState,
+    required TResult Function(_SendEmailConfirmation value)
+        sendEmailConfirmation,
+    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
+    required TResult Function(_UpdateConnectivityStatus value)
+        updateConnectivityStatus,
+    required TResult Function(_CheckConnectivityStatus value)
+        checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
+  }) {
+    return addData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_RegisterWithEmailAndPassword value)?
+        registerWithEmailAndPassword,
+    TResult Function(_SignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(SignOut value)? signOut,
+    TResult Function(CheckAuthState value)? checkAuthState,
+    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
+    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
+    TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
+    TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
+  }) {
+    return addData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RegisterWithEmailAndPassword value)?
+        registerWithEmailAndPassword,
+    TResult Function(_SignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(SignOut value)? signOut,
+    TResult Function(CheckAuthState value)? checkAuthState,
+    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
+    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
+    TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
+    TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    required TResult orElse(),
+  }) {
+    if (addData != null) {
+      return addData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddData implements AuthEvent {
+  const factory _AddData({required InfoModel data}) = _$_AddData;
+
+  InfoModel get data;
+  @JsonKey(ignore: true)
+  _$AddDataCopyWith<_AddData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$changeSortByOrderCopyWith<$Res> {
+  factory _$changeSortByOrderCopyWith(
+          _changeSortByOrder value, $Res Function(_changeSortByOrder) then) =
+      __$changeSortByOrderCopyWithImpl<$Res>;
+  $Res call({String orderBy});
+}
+
+/// @nodoc
+class __$changeSortByOrderCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements _$changeSortByOrderCopyWith<$Res> {
+  __$changeSortByOrderCopyWithImpl(
+      _changeSortByOrder _value, $Res Function(_changeSortByOrder) _then)
+      : super(_value, (v) => _then(v as _changeSortByOrder));
+
+  @override
+  _changeSortByOrder get _value => super._value as _changeSortByOrder;
+
+  @override
+  $Res call({
+    Object? orderBy = freezed,
+  }) {
+    return _then(_changeSortByOrder(
+      orderBy: orderBy == freezed
+          ? _value.orderBy
+          : orderBy // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_changeSortByOrder implements _changeSortByOrder {
+  const _$_changeSortByOrder({required this.orderBy});
+
+  @override
+  final String orderBy;
+
+  @override
+  String toString() {
+    return 'AuthEvent.changeSortByOrder(orderBy: $orderBy)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _changeSortByOrder &&
+            const DeepCollectionEquality().equals(other.orderBy, orderBy));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(orderBy));
+
+  @JsonKey(ignore: true)
+  @override
+  _$changeSortByOrderCopyWith<_changeSortByOrder> get copyWith =>
+      __$changeSortByOrderCopyWithImpl<_changeSortByOrder>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password)
+        registerWithEmailAndPassword,
+    required TResult Function(String email, String password)
+        signInWithEmailAndPassword,
+    required TResult Function() signOut,
+    required TResult Function() checkAuthState,
+    required TResult Function(String email) sendEmailConfirmation,
+    required TResult Function() deleteAcccount,
+    required TResult Function(String updatedEmail) updateEmailAddress,
+    required TResult Function(ConnectivityResult status)
+        updateConnectivityStatus,
+    required TResult Function() checkConnectivityStatus,
+    required TResult Function(InfoModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
+  }) {
+    return changeSortByOrder(orderBy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String email, String password)?
+        registerWithEmailAndPassword,
+    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function()? signOut,
+    TResult Function()? checkAuthState,
+    TResult Function(String email)? sendEmailConfirmation,
+    TResult Function()? deleteAcccount,
+    TResult Function(String updatedEmail)? updateEmailAddress,
+    TResult Function(ConnectivityResult status)? updateConnectivityStatus,
+    TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
+  }) {
+    return changeSortByOrder?.call(orderBy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)?
+        registerWithEmailAndPassword,
+    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function()? signOut,
+    TResult Function()? checkAuthState,
+    TResult Function(String email)? sendEmailConfirmation,
+    TResult Function()? deleteAcccount,
+    TResult Function(String updatedEmail)? updateEmailAddress,
+    TResult Function(ConnectivityResult status)? updateConnectivityStatus,
+    TResult Function()? checkConnectivityStatus,
+    TResult Function(InfoModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
+    required TResult orElse(),
+  }) {
+    if (changeSortByOrder != null) {
+      return changeSortByOrder(orderBy);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RegisterWithEmailAndPassword value)
+        registerWithEmailAndPassword,
+    required TResult Function(_SignInWithEmailAndPassword value)
+        signInWithEmailAndPassword,
+    required TResult Function(SignOut value) signOut,
+    required TResult Function(CheckAuthState value) checkAuthState,
+    required TResult Function(_SendEmailConfirmation value)
+        sendEmailConfirmation,
+    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
+    required TResult Function(_UpdateConnectivityStatus value)
+        updateConnectivityStatus,
+    required TResult Function(_CheckConnectivityStatus value)
+        checkConnectivityStatus,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
+  }) {
+    return changeSortByOrder(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_RegisterWithEmailAndPassword value)?
+        registerWithEmailAndPassword,
+    TResult Function(_SignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(SignOut value)? signOut,
+    TResult Function(CheckAuthState value)? checkAuthState,
+    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
+    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
+    TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
+    TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
+  }) {
+    return changeSortByOrder?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RegisterWithEmailAndPassword value)?
+        registerWithEmailAndPassword,
+    TResult Function(_SignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(SignOut value)? signOut,
+    TResult Function(CheckAuthState value)? checkAuthState,
+    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
+    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
+    TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
+    TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    required TResult orElse(),
+  }) {
+    if (changeSortByOrder != null) {
+      return changeSortByOrder(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _changeSortByOrder implements AuthEvent {
+  const factory _changeSortByOrder({required String orderBy}) =
+      _$_changeSortByOrder;
+
+  String get orderBy;
+  @JsonKey(ignore: true)
+  _$changeSortByOrderCopyWith<_changeSortByOrder> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1832,7 +2366,8 @@ class _$AuthStateTearOff {
           emailSendFailureOrSuccessOption,
       required Option<Either<AuthFailure, Unit>>
           updateEmailFailureOrSuccessOption,
-      required bool isNetworkAvailable}) {
+      required bool isNetworkAvailable,
+      required String orderBy}) {
     return _AuthState(
       isLoading: isLoading,
       isUserSignedin: isUserSignedin,
@@ -1841,6 +2376,7 @@ class _$AuthStateTearOff {
       emailSendFailureOrSuccessOption: emailSendFailureOrSuccessOption,
       updateEmailFailureOrSuccessOption: updateEmailFailureOrSuccessOption,
       isNetworkAvailable: isNetworkAvailable,
+      orderBy: orderBy,
     );
   }
 }
@@ -1861,6 +2397,7 @@ mixin _$AuthState {
   Option<Either<AuthFailure, Unit>> get updateEmailFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
   bool get isNetworkAvailable => throw _privateConstructorUsedError;
+  String get orderBy => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -1878,7 +2415,8 @@ abstract class $AuthStateCopyWith<$Res> {
       Option<Either<AuthFailure, Unit>> deleteAccountFailureOrSuccessOption,
       Option<Either<AuthFailure, Unit>> emailSendFailureOrSuccessOption,
       Option<Either<AuthFailure, Unit>> updateEmailFailureOrSuccessOption,
-      bool isNetworkAvailable});
+      bool isNetworkAvailable,
+      String orderBy});
 }
 
 /// @nodoc
@@ -1898,6 +2436,7 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
     Object? emailSendFailureOrSuccessOption = freezed,
     Object? updateEmailFailureOrSuccessOption = freezed,
     Object? isNetworkAvailable = freezed,
+    Object? orderBy = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed
@@ -1931,6 +2470,10 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
           ? _value.isNetworkAvailable
           : isNetworkAvailable // ignore: cast_nullable_to_non_nullable
               as bool,
+      orderBy: orderBy == freezed
+          ? _value.orderBy
+          : orderBy // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -1948,7 +2491,8 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       Option<Either<AuthFailure, Unit>> deleteAccountFailureOrSuccessOption,
       Option<Either<AuthFailure, Unit>> emailSendFailureOrSuccessOption,
       Option<Either<AuthFailure, Unit>> updateEmailFailureOrSuccessOption,
-      bool isNetworkAvailable});
+      bool isNetworkAvailable,
+      String orderBy});
 }
 
 /// @nodoc
@@ -1969,6 +2513,7 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     Object? emailSendFailureOrSuccessOption = freezed,
     Object? updateEmailFailureOrSuccessOption = freezed,
     Object? isNetworkAvailable = freezed,
+    Object? orderBy = freezed,
   }) {
     return _then(_AuthState(
       isLoading: isLoading == freezed
@@ -2002,6 +2547,10 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
           ? _value.isNetworkAvailable
           : isNetworkAvailable // ignore: cast_nullable_to_non_nullable
               as bool,
+      orderBy: orderBy == freezed
+          ? _value.orderBy
+          : orderBy // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -2016,7 +2565,8 @@ class _$_AuthState implements _AuthState {
       required this.deleteAccountFailureOrSuccessOption,
       required this.emailSendFailureOrSuccessOption,
       required this.updateEmailFailureOrSuccessOption,
-      required this.isNetworkAvailable});
+      required this.isNetworkAvailable,
+      required this.orderBy});
 
   @override
   final bool isLoading;
@@ -2032,10 +2582,12 @@ class _$_AuthState implements _AuthState {
   final Option<Either<AuthFailure, Unit>> updateEmailFailureOrSuccessOption;
   @override
   final bool isNetworkAvailable;
+  @override
+  final String orderBy;
 
   @override
   String toString() {
-    return 'AuthState(isLoading: $isLoading, isUserSignedin: $isUserSignedin, authFailureOrSuccessOption: $authFailureOrSuccessOption, deleteAccountFailureOrSuccessOption: $deleteAccountFailureOrSuccessOption, emailSendFailureOrSuccessOption: $emailSendFailureOrSuccessOption, updateEmailFailureOrSuccessOption: $updateEmailFailureOrSuccessOption, isNetworkAvailable: $isNetworkAvailable)';
+    return 'AuthState(isLoading: $isLoading, isUserSignedin: $isUserSignedin, authFailureOrSuccessOption: $authFailureOrSuccessOption, deleteAccountFailureOrSuccessOption: $deleteAccountFailureOrSuccessOption, emailSendFailureOrSuccessOption: $emailSendFailureOrSuccessOption, updateEmailFailureOrSuccessOption: $updateEmailFailureOrSuccessOption, isNetworkAvailable: $isNetworkAvailable, orderBy: $orderBy)';
   }
 
   @override
@@ -2058,7 +2610,8 @@ class _$_AuthState implements _AuthState {
                 other.updateEmailFailureOrSuccessOption,
                 updateEmailFailureOrSuccessOption) &&
             const DeepCollectionEquality()
-                .equals(other.isNetworkAvailable, isNetworkAvailable));
+                .equals(other.isNetworkAvailable, isNetworkAvailable) &&
+            const DeepCollectionEquality().equals(other.orderBy, orderBy));
   }
 
   @override
@@ -2070,7 +2623,8 @@ class _$_AuthState implements _AuthState {
       const DeepCollectionEquality().hash(deleteAccountFailureOrSuccessOption),
       const DeepCollectionEquality().hash(emailSendFailureOrSuccessOption),
       const DeepCollectionEquality().hash(updateEmailFailureOrSuccessOption),
-      const DeepCollectionEquality().hash(isNetworkAvailable));
+      const DeepCollectionEquality().hash(isNetworkAvailable),
+      const DeepCollectionEquality().hash(orderBy));
 
   @JsonKey(ignore: true)
   @override
@@ -2089,7 +2643,8 @@ abstract class _AuthState implements AuthState {
           emailSendFailureOrSuccessOption,
       required Option<Either<AuthFailure, Unit>>
           updateEmailFailureOrSuccessOption,
-      required bool isNetworkAvailable}) = _$_AuthState;
+      required bool isNetworkAvailable,
+      required String orderBy}) = _$_AuthState;
 
   @override
   bool get isLoading;
@@ -2105,6 +2660,8 @@ abstract class _AuthState implements AuthState {
   Option<Either<AuthFailure, Unit>> get updateEmailFailureOrSuccessOption;
   @override
   bool get isNetworkAvailable;
+  @override
+  String get orderBy;
   @override
   @JsonKey(ignore: true)
   _$AuthStateCopyWith<_AuthState> get copyWith =>

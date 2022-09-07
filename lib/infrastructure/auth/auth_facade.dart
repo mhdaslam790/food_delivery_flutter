@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_template/domain/auth/auth_failure.dart';
 import 'package:flutter_template/domain/auth/i_auth_facade.dart';
+import 'package:flutter_template/domain/auth/info_model.dart';
 import 'package:injectable/injectable.dart';
+import 'package:flutter_template/infrastructure/core/firebase_helpers.dart';
 
 @LazySingleton(as: IAuthFacade)
 class AuthFacade implements IAuthFacade {
@@ -137,6 +140,22 @@ class AuthFacade implements IAuthFacade {
       } else {
         return left(AuthFailure.serverError(e.toString()));
       }
+    }
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> insertData(
+      {required InfoModel data}) async {
+    try {
+      await _firebaseFirestore.userInfoCollection.add(data.toMap());
+      return right(unit);
+    } on Exception catch (e) {
+      print(e.toString());
+      return left(
+        const AuthFailure.serverError(
+          "An unexpected error occurred while signing in. Please try again",
+        ),
+      );
     }
   }
 }

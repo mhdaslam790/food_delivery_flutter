@@ -15,7 +15,7 @@ class LandingPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             const AppLogo(size: 30),
             const Spacer(),
             RoundedFilledButton(

@@ -21,7 +21,7 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _emailTEC = TextEditingController();
   final TextEditingController _passwordTEC = TextEditingController();
   final _key = GlobalKey<FormState>();
-  bool isChecked = false;
+  // bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class _SignupPageState extends State<SignupPage> {
       },
       builder: (context, state) {
         return AppScaffold(
-          appBar: const CustomAppBar(title: ""),
+          appBar: const CustomAppBar(title: "Sign up"),
           body: Column(
             children: [
               const Spacer(),
@@ -65,7 +65,7 @@ class _SignupPageState extends State<SignupPage> {
                   children: <Widget>[
                     TextFormField(
                       controller: _emailTEC,
-                      style: const TextStyle(color: Colors.white),
+                      // style: const TextStyle(color: Colors.white),
                       onTap: () {
                         HapticFeedback.selectionClick();
                       },
@@ -75,7 +75,7 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         isDense: true,
                         labelText: "Email Address",
-                        labelStyle: const TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.grey),
                       ),
                       keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.center,
@@ -86,7 +86,7 @@ class _SignupPageState extends State<SignupPage> {
                     const SizedBox(height: 15),
                     TextFormField(
                       controller: _passwordTEC,
-                      style: const TextStyle(color: Colors.white),
+                      // style: const TextStyle(color: Colors.grey),
                       onTap: () {
                         HapticFeedback.selectionClick();
                       },
@@ -96,7 +96,7 @@ class _SignupPageState extends State<SignupPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         labelText: "Password",
-                        labelStyle: const TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.grey),
                       ),
                       obscureText: true,
                       keyboardType: TextInputType.visiblePassword,
@@ -108,18 +108,17 @@ class _SignupPageState extends State<SignupPage> {
                     RoundedFilledButton(
                       onTap: () {
                         if (_key.currentState!.validate()) {
-                          if (isChecked) {
-                            context.read<AuthBloc>().add(
-                                  AuthEvent.registerWithEmailAndPassword(
-                                    email: _emailTEC.text,
-                                    password: _passwordTEC.text,
-                                  ),
-                                );
-                          } else {
-                            Fluttertoast.showToast(
-                              msg: "Please check the box to continue",
-                            );
-                          }
+                          context.read<AuthBloc>().add(
+                                AuthEvent.registerWithEmailAndPassword(
+                                  email: _emailTEC.text,
+                                  password: _passwordTEC.text,
+                                ),
+                              );
+                          // } else {
+                          //   Fluttertoast.showToast(
+                          //     msg: "Please check the box to continue",
+                          //   );
+                          // }
                         }
                       },
                       text: "Register",

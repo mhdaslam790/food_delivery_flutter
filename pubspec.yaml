@@ -74,3 +74,4 @@ flutter:
   assets:
     - lang/
     - assets/
+    - assets/icons/age.svg

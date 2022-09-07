@@ -6,7 +6,6 @@ import 'package:flutter_template/presentation/base/base_page.dart';
 import 'package:flutter_template/presentation/core/pages/landing_page.dart';
 import 'package:flutter_template/presentation/core/pages/onboarding_page.dart';
 import 'package:flutter_template/presentation/core/pages/splash_page.dart';
-import 'package:flutter_template/presentation/core/pages/update_app_page.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: "Page,Route",
@@ -14,7 +13,6 @@ import 'package:flutter_template/presentation/core/pages/update_app_page.dart';
     ///[Core]
     AutoRoute(page: SplashPage, initial: true),
     AutoRoute(page: OnboardingPage),
-    AutoRoute(page: UpdateAppPage),
     AutoRoute(page: LandingPage),
 
     ///[Authentication]
