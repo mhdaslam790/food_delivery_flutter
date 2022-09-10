@@ -13,7 +13,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       title: Text(title),
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       leading: IconButton(
         onPressed: () {
           AutoRouter.of(context).pop();

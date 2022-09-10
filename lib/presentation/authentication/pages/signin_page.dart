@@ -42,7 +42,7 @@ class _SigninPageState extends State<SigninPage> {
                     userNotFound: (e) => "User not found.",
                     invalidEmailAndPasswordCombination: (e) =>
                         "Invalid email and password combination. Please try again",
-                    serverError: (e) => e.toString(),
+                    serverError: (e) =>e.error,
                     orElse: () =>
                         "An unexpected error occurred. Please try again",
                   ),
@@ -58,95 +58,105 @@ class _SigninPageState extends State<SigninPage> {
       },
       builder: (context, state) {
         return AppScaffold(
+          resizeToAvoidBottomInset: false,
           appBar: const CustomAppBar(title: "Sign in"),
-          body: Column(
-            children: [
-              const Spacer(),
-              const AppLogo(),
-              const SizedBox(height: 50),
-              Form(
-                key: _key,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    TextFormField(
-                      controller: _emailTEC,
-                      keyboardType: TextInputType.emailAddress,
-                      textAlign: TextAlign.center,
-                      // style: const TextStyle(color: AppColors.black),
-                      onTap: () {
-                        HapticFeedback.selectionClick();
-                      },
-                      decoration: InputDecoration(
-                        isDense: true,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        labelText: "Email Address",
-                        labelStyle: const TextStyle(color: Colors.grey),
-                      ),
-                      enableSuggestions: false,
-                      validator: Validators.email,
-                      autocorrect: false,
-                    ),
-                    const SizedBox(height: 15),
-                    TextFormField(
-                      controller: _passwordTEC,
-                      obscureText: true,
-                      keyboardType: TextInputType.visiblePassword,
-                      textAlign: TextAlign.center,
-                      //  style: const TextStyle(color: AppColors.black),
-                      onTap: () {
-                        HapticFeedback.selectionClick();
-                      },
-                      decoration: InputDecoration(
-                        isDense: true,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        labelText: "Password",
-                        labelStyle: const TextStyle(color: Colors.grey),
-                      ),
-                      enableSuggestions: false,
-                      validator: Validators.password,
-                      autocorrect: false,
-                    ),
-                    const SizedBox(
-                      height: 40.0,
-                    ),
-                    RoundedFilledButton(
-                      onTap: () {
-                        if (_key.currentState!.validate()) {
-                          context.read<AuthBloc>().add(
-                                AuthEvent.signInWithEmailAndPassword(
-                                  email: _emailTEC.text,
-                                  password: _passwordTEC.text,
-                                ),
-                              );
-                        }
-                      },
-                      text: "Login",
-                    ),
-                    const SizedBox(height: 15),
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: "Forgot password?",
-                        style: GoogleFonts.poppins(),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  const Spacer(),
+                  const AppLogo(size: 100),
+                  const Text(
+                    "Food delivery app",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 50),
+                  Form(
+                    key: _key,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        TextFormField(
+                          controller: _emailTEC,
+                          keyboardType: TextInputType.emailAddress,
+                          textAlign: TextAlign.center,
+                          // style: const TextStyle(color: AppColors.black),
+                          onTap: () {
                             HapticFeedback.selectionClick();
-                            AutoRouter.of(context)
-                                .replace(ForgotPasswordRoute());
                           },
-                      ),
+                          decoration: InputDecoration(
+                            isDense: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            labelText: "Mobile number",
+                            labelStyle: const TextStyle(color: Colors.grey),
+                          ),
+                          enableSuggestions: false,
+                          validator: Validators.phone,
+                          autocorrect: false,
+                        ),
+                        const SizedBox(height: 15),
+                        TextFormField(
+                          controller: _passwordTEC,
+                          obscureText: true,
+                          keyboardType: TextInputType.visiblePassword,
+                          textAlign: TextAlign.center,
+                          //  style: const TextStyle(color: AppColors.black),
+                          onTap: () {
+                            HapticFeedback.selectionClick();
+                          },
+                          decoration: InputDecoration(
+                            isDense: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            labelText: "Password",
+                            labelStyle: const TextStyle(color: Colors.grey),
+                          ),
+                          enableSuggestions: false,
+                          validator: Validators.password,
+                          autocorrect: false,
+                        ),
+                        const SizedBox(
+                          height: 40.0,
+                        ),
+                        RoundedFilledButton(
+                          onTap: () {
+                            if (_key.currentState!.validate()) {
+                              context.read<AuthBloc>().add(
+                                    AuthEvent.signInWithEmailAndPassword(
+                                      mobileNumber: _emailTEC.text,
+                                      password: _passwordTEC.text,
+                                    ),
+                                  );
+                            }
+                          },
+                          text: "Login",
+                        ),
+                        const SizedBox(height: 15),
+                        RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "Forgot password?",
+                            style: GoogleFonts.poppins(),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                HapticFeedback.selectionClick();
+                                AutoRouter.of(context)
+                                    .replace(ForgotPasswordRoute());
+                              },
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  const Spacer(flex: 3),
+                ],
               ),
-              const Spacer(flex: 3),
-            ],
+            ),
           ),
         );
       },

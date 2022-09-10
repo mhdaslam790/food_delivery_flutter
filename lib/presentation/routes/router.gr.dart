@@ -11,6 +11,7 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i8;
+import 'package:flutter/cupertino.dart' as _i10;
 import 'package:flutter/material.dart' as _i9;
 
 import '../authentication/pages/forgot_password_page.dart' as _i6;
@@ -116,7 +117,7 @@ class SignupRoute extends _i8.PageRouteInfo<void> {
 /// generated route for
 /// [_i6.ForgotPasswordPage]
 class ForgotPasswordRoute extends _i8.PageRouteInfo<ForgotPasswordRouteArgs> {
-  ForgotPasswordRoute({_i9.Key? key})
+  ForgotPasswordRoute({_i10.Key? key})
       : super(ForgotPasswordRoute.name,
             path: '/forgot-password-page',
             args: ForgotPasswordRouteArgs(key: key));
@@ -127,7 +128,7 @@ class ForgotPasswordRoute extends _i8.PageRouteInfo<ForgotPasswordRouteArgs> {
 class ForgotPasswordRouteArgs {
   const ForgotPasswordRouteArgs({this.key});
 
-  final _i9.Key? key;
+  final _i10.Key? key;
 
   @override
   String toString() {

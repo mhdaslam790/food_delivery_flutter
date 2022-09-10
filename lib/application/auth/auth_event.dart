@@ -8,7 +8,7 @@ class AuthEvent with _$AuthEvent {
   }) = _RegisterWithEmailAndPassword;
 
   const factory AuthEvent.signInWithEmailAndPassword({
-    required String email,
+    required String mobileNumber,
     required String password,
   }) = _SignInWithEmailAndPassword;
 

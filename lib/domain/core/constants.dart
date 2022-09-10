@@ -22,9 +22,12 @@ class StorageConstants {
   static const String appLocale = 'app_locale';
   static const String fingerPrintSupported = 'fingerpring_support';
   static const String fingerPrintEnabled = 'fingerpring_enable';
+  static const String isLoggedIn = 'isLoggedIn';
 }
 
 class ApiConstants {
-  static const String apiKey = "";
-  static const String apiSecret = "";
+  // static const String apiKey = "";
+  static const String apiUserToken = "123";
+  static const String apiURL = "https://brbun.aaratechnologies.in/super_admin/";
+  static const String logInUrl = "brbun_web_services/brbun_customer/login.php";
 }

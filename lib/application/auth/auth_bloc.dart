@@ -34,8 +34,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
       signInWithEmailAndPassword: (e) async* {
         yield* _performActionOnAuthFacadeWithEmailAndPassword(
-          _authFacade.signInWithEmailAndPassword,
-          e.email,
+          _authFacade.signInWithMobileAndPassword,
+          e.mobileNumber,
           e.password,
         );
       },
@@ -155,7 +155,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Stream<AuthState> _performActionOnAuthFacadeWithEmailAndPassword(
     Future<Either<AuthFailure, Unit>> Function({
-      required String emailAddress,
+      required String mobileNumber,
       required String password,
     })
         forwardedCall,
@@ -173,7 +173,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
 
     failureOrSuccess = await forwardedCall(
-      emailAddress: email,
+      mobileNumber: email,
       password: password,
     );
 

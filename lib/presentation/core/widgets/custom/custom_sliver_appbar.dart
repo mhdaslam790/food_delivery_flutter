@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/application/auth/auth_bloc.dart';
 import 'package:flutter_template/presentation/core/styles/app_colors.dart';
+import 'package:flutter_template/presentation/drawer/custom_drawer.dart';
 
 class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
@@ -35,7 +36,9 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
                 ),
               ),
               leading: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
                 icon: Icon(
                   Icons.menu,
                   color: AppColors.white,

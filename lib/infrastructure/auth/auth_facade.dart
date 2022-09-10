@@ -1,37 +1,35 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore_for_file: avoid_dynamic_calls
+
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/domain/auth/auth_failure.dart';
 import 'package:flutter_template/domain/auth/i_auth_facade.dart';
 import 'package:flutter_template/domain/auth/info_model.dart';
+import 'package:flutter_template/domain/core/constants.dart';
 import 'package:injectable/injectable.dart';
-import 'package:flutter_template/infrastructure/core/firebase_helpers.dart';
+import 'package:http/http.dart' as http;
 
 @LazySingleton(as: IAuthFacade)
 class AuthFacade implements IAuthFacade {
-  final FirebaseAuth _firebaseAuth;
-  final FirebaseFirestore _firebaseFirestore;
-
-  AuthFacade(
-    this._firebaseAuth,
-    this._firebaseFirestore,
-  );
+  AuthFacade();
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
-    required String emailAddress,
+    required String mobileNumber,
     required String password,
   }) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-        email: emailAddress,
-        password: password,
-      );
+      // await _firebaseAuth.createUserWithEmailAndPassword(
+      //   email: emailAddress,
+      //   password: password,
+      // );
       return right(unit);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
+    } on Exception catch (e) {
+      if (e == 'email-already-in-use') {
         return left(const AuthFailure.emailAlreadyInUse());
       } else {
         return left(
@@ -44,32 +42,51 @@ class AuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
-    required String emailAddress,
+  Future<Either<AuthFailure, Unit>> signInWithMobileAndPassword({
+    required String mobileNumber,
     required String password,
   }) async {
-    try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-        email: emailAddress,
-        password: password,
-      );
-      return right(unit);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
-        return left(const AuthFailure.invalidEmailAndPasswordCombination());
+    // try {
+    final jsonBody = {
+      'mobileNumber': mobileNumber,
+      'password': password,
+      'userToken': ApiConstants.apiUserToken,
+    };
+    final url = Uri.parse(
+      ApiConstants.apiURL + ApiConstants.logInUrl,
+    );
+    final response = await http.post(url, body: jsonBody);
+    print('Response status: ${response.statusCode}');
+    // print('Response body: ${response.body}');
+    if (response.statusCode == 200) {
+      final jsonResponse = jsonDecode(response.body);
+
+      if (jsonResponse['status'] == '1') {
+        const storage = FlutterSecureStorage();
+
+        await storage.write(key: StorageConstants.isLoggedIn, value: "true");
+
+        return right(unit);
       } else {
         return left(
-          const AuthFailure.serverError(
-            "An unexpected error occurred while signing in. Please try again",
+          AuthFailure.serverError(
+            jsonResponse['message'].toString(),
           ),
         );
       }
+    } else {
+      return left(
+        const AuthFailure.serverError(
+          "An unexpected error occurred while signing in. Please try again",
+        ),
+      );
     }
   }
 
   @override
   Future<void> signOut() async {
-    await _firebaseAuth.signOut();
+    const storage = FlutterSecureStorage();
+    await storage.write(key: StorageConstants.isLoggedIn, value: "false");
   }
 
   @override
@@ -77,11 +94,11 @@ class AuthFacade implements IAuthFacade {
     required String emailAddress,
   }) async {
     try {
-      await _firebaseAuth.sendPasswordResetEmail(email: emailAddress);
+      // await _firebaseAuth.sendPasswordResetEmail(email: emailAddress);
       return right(unit);
-    } on FirebaseAuthException catch (e) {
-      debugPrint(e.code);
-      if (e.code == 'user-not-found' || e.code == 'invalid-email') {
+    } on Exception catch (e) {
+      // debugPrint(ode);
+      if (e == 'user-not-found' || e == 'invalid-email') {
         return left(const AuthFailure.userNotFound());
       } else {
         return left(
@@ -95,27 +112,29 @@ class AuthFacade implements IAuthFacade {
 
   @override
   Future<bool> checkAuthState() async {
-    final User? currentUser = _firebaseAuth.currentUser;
-    if (currentUser != null) {
-      return true;
-    } else {
+    const storage = FlutterSecureStorage();
+    final value = await storage.read(key: StorageConstants.isLoggedIn);
+    print("login status ${value.toString()}");
+    if (value == null || value == "false") {
       return false;
+    } else {
+      return true;
     }
   }
 
   @override
   Future<Either<AuthFailure, Unit>> deleteAccount() async {
     try {
-      final User? currentUser = _firebaseAuth.currentUser;
+      // final User? currentUser = _firebaseAuth.currentUser;
       //Delete user from firebase auth
-      await currentUser!.delete();
+      // await currentUser!.delete();
       //TODO: Delete documents for the users
 
       return right(unit);
-    } on FirebaseAuthException catch (e) {
+    } on Exception catch (e) {
       debugPrint(e.toString());
-      if (e.code == "requires-recent-login") {
-        return left(AuthFailure.serverError(e.message.toString()));
+      if (e == "requires-recent-login") {
+        return left(AuthFailure.serverError(e.toString()));
       }
       return left(const AuthFailure.deleteAccountFailure());
     }
@@ -125,15 +144,15 @@ class AuthFacade implements IAuthFacade {
   Future<Either<AuthFailure, Unit>> updateEmailAddress(
       {required String updatedEmail}) async {
     try {
-      await _firebaseAuth.currentUser!.updateEmail(updatedEmail);
+      // await _firebaseAuth.currentUser!.updateEmail(updatedEmail);
       return right(unit);
-    } on FirebaseAuthException catch (e) {
+    } on Exception catch (e) {
       debugPrint(e.toString());
-      if (e.code == "email-already-in-use") {
+      if (e == "email-already-in-use") {
         return left(const AuthFailure.emailAlreadyInUse());
-      } else if (e.code == "requires-recent-login") {
-        return left(AuthFailure.requiresRecentLogin(e.message.toString()));
-      } else if (e.code == "invalid-email") {
+      } else if (e == "requires-recent-login") {
+        return left(AuthFailure.requiresRecentLogin(e.toString()));
+      } else if (e == "invalid-email") {
         return left(
           const AuthFailure.serverError("Invalid email. Please enter again"),
         );
@@ -147,7 +166,7 @@ class AuthFacade implements IAuthFacade {
   Future<Either<AuthFailure, Unit>> insertData(
       {required InfoModel data}) async {
     try {
-      await _firebaseFirestore.userInfoCollection.add(data.toMap());
+      // await _firebaseFirestore.userInfoCollection.add(data.toMap());
       return right(unit);
     } on Exception catch (e) {
       print(e.toString());

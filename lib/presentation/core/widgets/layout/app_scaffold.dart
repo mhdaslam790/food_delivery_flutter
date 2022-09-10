@@ -79,11 +79,29 @@ class AppScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        extendBody: extendBody,
+        drawerScrimColor: drawerScrimColor,
+        drawerEdgeDragWidth: drawerEdgeDragWidth,
+        drawerEnableOpenDragGesture: drawerEnableOpenDragGesture,
+        endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
+        restorationId: restorationId,
+        extendBodyBehindAppBar: extendBodyBehindAppBar,
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
         appBar: appBar,
+        floatingActionButtonAnimator: floatingActionButtonAnimator,
         backgroundColor: backgroundColor ?? Colors.white,
+        persistentFooterButtons: persistentFooterButtons,
         floatingActionButton: floatingActionButton,
         floatingActionButtonLocation: floatingActionButtonLocation,
         body: body,
+        drawer: drawer,
+        onDrawerChanged: onDrawerChanged,
+        onEndDrawerChanged: onEndDrawerChanged,
+        endDrawer: endDrawer,
+        bottomNavigationBar: bottomNavigationBar,
+        bottomSheet: bottomSheet,
+        primary: primary,
+        drawerDragStartBehavior: drawerDragStartBehavior,
       ),
     );
   }

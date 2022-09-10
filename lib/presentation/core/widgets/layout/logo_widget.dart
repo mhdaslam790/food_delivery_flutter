@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AppLogo extends StatelessWidget {
   final double? size;
   const AppLogo({this.size});
   @override
   Widget build(BuildContext context) {
-    return FlutterLogo(
-      size: size,
+    return AppLogoFull(
+      width: size,
+      height: size,
     );
   }
 }
@@ -17,6 +19,10 @@ class AppLogoFull extends StatelessWidget {
   const AppLogoFull({required this.width, required this.height});
   @override
   Widget build(BuildContext context) {
-    return const FlutterLogo();
+    return SvgPicture.asset(
+      'assets/icons/logo.svg',
+      height: height,
+      width: width,
+    );
   }
 }

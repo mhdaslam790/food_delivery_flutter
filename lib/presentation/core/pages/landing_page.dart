@@ -16,7 +16,11 @@ class LandingPage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 50),
-            const AppLogo(size: 30),
+            const AppLogo(size: 100),
+            const Text(
+              "Food delivery app",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             const Spacer(),
             RoundedFilledButton(
               text: "Sign up",

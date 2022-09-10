@@ -27,9 +27,9 @@ class _$AuthEventTearOff {
   }
 
   _SignInWithEmailAndPassword signInWithEmailAndPassword(
-      {required String email, required String password}) {
+      {required String mobileNumber, required String password}) {
     return _SignInWithEmailAndPassword(
-      email: email,
+      mobileNumber: mobileNumber,
       password: password,
     );
   }
@@ -91,7 +91,7 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -109,7 +109,8 @@ mixin _$AuthEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -125,7 +126,8 @@ mixin _$AuthEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -292,7 +294,7 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -313,7 +315,8 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -332,7 +335,8 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -436,7 +440,7 @@ abstract class _$SignInWithEmailAndPasswordCopyWith<$Res> {
           _SignInWithEmailAndPassword value,
           $Res Function(_SignInWithEmailAndPassword) then) =
       __$SignInWithEmailAndPasswordCopyWithImpl<$Res>;
-  $Res call({String email, String password});
+  $Res call({String mobileNumber, String password});
 }
 
 /// @nodoc
@@ -453,13 +457,13 @@ class __$SignInWithEmailAndPasswordCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? email = freezed,
+    Object? mobileNumber = freezed,
     Object? password = freezed,
   }) {
     return _then(_SignInWithEmailAndPassword(
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      mobileNumber: mobileNumber == freezed
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
               as String,
       password: password == freezed
           ? _value.password
@@ -473,16 +477,16 @@ class __$SignInWithEmailAndPasswordCopyWithImpl<$Res>
 
 class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
   const _$_SignInWithEmailAndPassword(
-      {required this.email, required this.password});
+      {required this.mobileNumber, required this.password});
 
   @override
-  final String email;
+  final String mobileNumber;
   @override
   final String password;
 
   @override
   String toString() {
-    return 'AuthEvent.signInWithEmailAndPassword(email: $email, password: $password)';
+    return 'AuthEvent.signInWithEmailAndPassword(mobileNumber: $mobileNumber, password: $password)';
   }
 
   @override
@@ -490,14 +494,15 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SignInWithEmailAndPassword &&
-            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.mobileNumber, mobileNumber) &&
             const DeepCollectionEquality().equals(other.password, password));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(mobileNumber),
       const DeepCollectionEquality().hash(password));
 
   @JsonKey(ignore: true)
@@ -511,7 +516,7 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -524,7 +529,7 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
     required TResult Function(InfoModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
   }) {
-    return signInWithEmailAndPassword(email, password);
+    return signInWithEmailAndPassword(mobileNumber, password);
   }
 
   @override
@@ -532,7 +537,8 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -543,7 +549,7 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
     TResult Function(InfoModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
   }) {
-    return signInWithEmailAndPassword?.call(email, password);
+    return signInWithEmailAndPassword?.call(mobileNumber, password);
   }
 
   @override
@@ -551,7 +557,8 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -564,7 +571,7 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
     required TResult orElse(),
   }) {
     if (signInWithEmailAndPassword != null) {
-      return signInWithEmailAndPassword(email, password);
+      return signInWithEmailAndPassword(mobileNumber, password);
     }
     return orElse();
   }
@@ -639,10 +646,10 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
 
 abstract class _SignInWithEmailAndPassword implements AuthEvent {
   const factory _SignInWithEmailAndPassword(
-      {required String email,
+      {required String mobileNumber,
       required String password}) = _$_SignInWithEmailAndPassword;
 
-  String get email;
+  String get mobileNumber;
   String get password;
   @JsonKey(ignore: true)
   _$SignInWithEmailAndPasswordCopyWith<_SignInWithEmailAndPassword>
@@ -689,7 +696,7 @@ class _$SignOut implements SignOut {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -710,7 +717,8 @@ class _$SignOut implements SignOut {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -729,7 +737,8 @@ class _$SignOut implements SignOut {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -861,7 +870,7 @@ class _$CheckAuthState implements CheckAuthState {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -882,7 +891,8 @@ class _$CheckAuthState implements CheckAuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -901,7 +911,8 @@ class _$CheckAuthState implements CheckAuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -1059,7 +1070,7 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -1080,7 +1091,8 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -1099,7 +1111,8 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -1237,7 +1250,7 @@ class _$_DeleteAccount implements _DeleteAccount {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -1258,7 +1271,8 @@ class _$_DeleteAccount implements _DeleteAccount {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -1277,7 +1291,8 @@ class _$_DeleteAccount implements _DeleteAccount {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -1435,7 +1450,7 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -1456,7 +1471,8 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -1475,7 +1491,8 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -1640,7 +1657,7 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -1661,7 +1678,8 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -1680,7 +1698,8 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -1820,7 +1839,7 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -1841,7 +1860,8 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -1860,7 +1880,8 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -2014,7 +2035,7 @@ class _$_AddData implements _AddData {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -2035,7 +2056,8 @@ class _$_AddData implements _AddData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -2054,7 +2076,8 @@ class _$_AddData implements _AddData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -2216,7 +2239,7 @@ class _$_changeSortByOrder implements _changeSortByOrder {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password)
         registerWithEmailAndPassword,
-    required TResult Function(String email, String password)
+    required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
@@ -2237,7 +2260,8 @@ class _$_changeSortByOrder implements _changeSortByOrder {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,
@@ -2256,7 +2280,8 @@ class _$_changeSortByOrder implements _changeSortByOrder {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)?
         registerWithEmailAndPassword,
-    TResult Function(String email, String password)? signInWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
     TResult Function(String email)? sendEmailConfirmation,

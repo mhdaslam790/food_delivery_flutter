@@ -1,14 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/application/auth/auth_bloc.dart';
 import 'package:flutter_template/domain/auth/info_model.dart';
-import 'package:flutter_template/infrastructure/core/firebase_helpers.dart';
 import 'package:flutter_template/presentation/core/styles/app_colors.dart';
 import 'package:flutter_template/presentation/core/widgets/bottom_sheet_panel.dart';
 import 'package:flutter_template/presentation/core/widgets/custom/custom_sliver_appbar.dart';
 import 'package:flutter_template/presentation/core/widgets/layout/app_scaffold.dart';
 import 'package:flutter_template/presentation/core/widgets/layout/sized_boxes.dart';
+import 'package:flutter_template/presentation/drawer/custom_drawer.dart';
 
 class BasePage extends StatelessWidget {
   final _controller = ScrollController();
@@ -16,6 +13,7 @@ class BasePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
+      drawer: const CustomDrawer(),
       backgroundColor: const Color(0xFFF0F0F0),
       resizeToAvoidBottomInset: true,
       floatingActionButton: FloatingActionButton(
@@ -54,48 +52,48 @@ class BasePage extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              BlocBuilder<AuthBloc, AuthState>(
-                builder: (context, state) {
-                  return StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance.userInfoCollection
-                        .orderBy(state.orderBy, descending: false)
-                        .snapshots(),
-                    builder: (
-                      BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot,
-                    ) {
-                      if (snapshot.hasData) {
-                        final userInfoList = snapshot.data!.docs
-                            .map((e) => InfoModel.fromMap(
-                                e.data() as Map<String, dynamic>))
-                            .toList();
+              // BlocBuilder<AuthBloc, AuthState>(
+              //   builder: (context, state) {
+              //     return StreamBuilder<QuerySnapshot>(
+              //       stream: FirebaseFirestore.instance.userInfoCollection
+              //           .orderBy(state.orderBy, descending: false)
+              //           .snapshots(),
+              //       builder: (
+              //         BuildContext context,
+              //         AsyncSnapshot<QuerySnapshot> snapshot,
+              //       ) {
+              //         if (snapshot.hasData) {
+              //           final userInfoList = snapshot.data!.docs
+              //               .map((e) => InfoModel.fromMap(
+              //                   e.data() as Map<String, dynamic>))
+              //               .toList();
 
-                        return ListView.builder(
-                          controller: _controller,
-                          // scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemCount: userInfoList.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              padding: const EdgeInsets.all(10),
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(15),
-                                ),
-                              ),
-                              child: InfoTile(data: userInfoList[index]),
-                            );
-                          },
-                        );
-                      }
-                      return const SizedBox.shrink();
-                    },
-                  );
-                },
-              ),
+              //           return ListView.builder(
+              //             controller: _controller,
+              //             // scrollDirection: Axis.vertical,
+              //             shrinkWrap: true,
+              //             itemCount: userInfoList.length,
+              //             itemBuilder: (context, index) {
+              //               return Container(
+              //                 padding: const EdgeInsets.all(10),
+              //                 margin: const EdgeInsets.symmetric(
+              //                     horizontal: 20, vertical: 10),
+              //                 decoration: const BoxDecoration(
+              //                   color: Colors.white,
+              //                   borderRadius: BorderRadius.all(
+              //                     Radius.circular(15),
+              //                   ),
+              //                 ),
+              //                 child: InfoTile(data: userInfoList[index]),
+              //               );
+              //             },
+              //           );
+              //         }
+              //         return const SizedBox.shrink();
+              //       },
+              //     );
+              //   },
+              // ),
             ],
           ),
         ),
