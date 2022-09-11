@@ -13,7 +13,7 @@ mixin AppTheme {
         primaryTextTheme: const TextTheme(
           headline1: TextStyle(
             color: Colors.black,
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
           headline2: TextStyle(
@@ -39,7 +39,7 @@ mixin AppTheme {
           headline6: TextStyle(
             color: Colors.black,
             fontSize: 18,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
           ),
           bodyText1: TextStyle(
             color: Colors.black,
@@ -47,7 +47,10 @@ mixin AppTheme {
             // fontSize: 35,
           ),
           bodyText2: TextStyle(
+            fontSize: 16,
             color: Colors.black,
+            fontWeight: FontWeight.w500,
+            overflow: TextOverflow.ellipsis,
           ),
           caption: TextStyle(
             color: Colors.black,

@@ -29,5 +29,25 @@ class ApiConstants {
   // static const String apiKey = "";
   static const String apiUserToken = "123";
   static const String apiURL = "https://brbun.aaratechnologies.in/super_admin/";
-  static const String logInUrl = "brbun_web_services/brbun_customer/login.php";
+  static const String logInAPI = "brbun_web_services/brbun_customer/login.php";
+  static const String registerAPI =
+      "brbun_web_services/brbun_customer/userRegistration.php";
+  static const String sendOTPAPI =
+      "brbun_web_services/brbun_customer/resendOtp.php";
+  static const String verifyOtpAPI =
+      "brbun_web_services/brbun_customer/verifyOtp.php";
+  static const String sliderAPI =
+      "brbun_web_services/brbun_customer/bannerSlider.php";
+  static const String categoryAPI =
+      "brbun_web_services/brbun_customer/restaurantCategory.php";
+  static const String nearbyRestaurantAPI =
+      "brbun_web_services/brbun_customer/nearbyRestaurants.php";
+  static const String categorySearch =
+      "brbun_web_services/brbun_customer/categoryWiseRestaurantsSearch.php";
+  static const String searchAPI =
+      "brbun_web_services/brbun_customer/search.php";
+  static const String restaurantDetailAPI =
+      "brbun_web_services/brbun_customer/restaurantsDetails.php";
+  static const String categoryWiseMenuAPI =
+      "brbun_web_services/brbun_customer/getCategoryWiseMenu.php";
 }

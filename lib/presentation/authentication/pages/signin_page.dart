@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/application/auth/auth_bloc.dart';
+import 'package:flutter_template/application/restaurant/restaurant_bloc.dart';
 import 'package:flutter_template/domain/core/validators.dart';
 import 'package:flutter_template/presentation/core/styles/app_colors.dart';
 import 'package:flutter_template/presentation/core/widgets/buttons/rounded_filled_button.dart';
@@ -13,6 +14,8 @@ import 'package:flutter_template/presentation/core/widgets/layout/logo_widget.da
 import 'package:flutter_template/presentation/routes/router.gr.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../core/widgets/layout/circular_progress.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({Key? key}) : super(key: key);
@@ -42,13 +45,18 @@ class _SigninPageState extends State<SigninPage> {
                     userNotFound: (e) => "User not found.",
                     invalidEmailAndPasswordCombination: (e) =>
                         "Invalid email and password combination. Please try again",
-                    serverError: (e) =>e.error,
+                    serverError: (e) => e.error,
                     orElse: () =>
                         "An unexpected error occurred. Please try again",
                   ),
                 );
+                AutoRouter.of(context).pop();
               },
               (success) {
+                context.read<RestaurantBloc>()
+                  ..add(const RestaurantEvent.fetchSliderList())
+                  ..add(const RestaurantEvent.fetchRestaurantList())
+                  ..add(const RestaurantEvent.fetchCategoryList());
                 AutoRouter.of(context).popUntilRoot();
                 AutoRouter.of(context).replace(const BaseRoute());
               },
@@ -132,6 +140,7 @@ class _SigninPageState extends State<SigninPage> {
                                       password: _passwordTEC.text,
                                     ),
                                   );
+                              showProgress(context);
                             }
                           },
                           text: "Login",
@@ -141,7 +150,11 @@ class _SigninPageState extends State<SigninPage> {
                           textAlign: TextAlign.center,
                           text: TextSpan(
                             text: "Forgot password?",
-                            style: GoogleFonts.poppins(),
+                            style: GoogleFonts.poppins(
+                                color: Theme.of(context)
+                                    .primaryTextTheme
+                                    .headline1!
+                                    .color),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 HapticFeedback.selectionClick();

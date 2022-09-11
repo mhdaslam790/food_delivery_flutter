@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/application/auth/auth_bloc.dart';
-import 'package:flutter_template/domain/auth/info_model.dart';
+import 'package:flutter_template/domain/restaurant/restaurant_model.dart';
 import 'package:flutter_template/presentation/core/styles/app_colors.dart';
 import 'package:flutter_template/presentation/core/widgets/layout/sized_boxes.dart';
 
@@ -147,15 +147,15 @@ class _BottomSheetPanelState extends State<BottomSheetPanel> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_key.currentState!.validate()) {
-                      context.read<AuthBloc>().add(
-                            AuthEvent.addData(
-                              data: InfoModel(
-                                name: name,
-                                age: age,
-                                city: city,
-                              ),
-                            ),
-                          );
+                      // context.read<AuthBloc>().add(
+                      //       AuthEvent.addData(
+                      //         data: RestaurantModel(
+                      //           name: name,
+                      //           age: age,
+                      //           city: city,
+                      //         ),
+                      //       ),
+                      //     );
                       Navigator.of(context).pop();
                     }
                   },

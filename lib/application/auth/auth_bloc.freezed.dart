@@ -19,9 +19,14 @@ class _$AuthEventTearOff {
   const _$AuthEventTearOff();
 
   _RegisterWithEmailAndPassword registerWithEmailAndPassword(
-      {required String email, required String password}) {
+      {required String email,
+      required String name,
+      required String mobileNumber,
+      required String password}) {
     return _RegisterWithEmailAndPassword(
       email: email,
+      name: name,
+      mobileNumber: mobileNumber,
       password: password,
     );
   }
@@ -42,14 +47,18 @@ class _$AuthEventTearOff {
     return const CheckAuthState();
   }
 
-  _SendEmailConfirmation sendEmailConfirmation({required String email}) {
+  _SendEmailConfirmation verifyOtp(
+      {required String mobileNumber, required String otp}) {
     return _SendEmailConfirmation(
-      email: email,
+      mobileNumber: mobileNumber,
+      otp: otp,
     );
   }
 
-  _DeleteAccount deleteAcccount() {
-    return const _DeleteAccount();
+  _DeleteAccount sendOtp({required String mobileNumber}) {
+    return _DeleteAccount(
+      mobileNumber: mobileNumber,
+    );
   }
 
   _UpdateEmailAddress updateEmailAddress(String updatedEmail) {
@@ -69,7 +78,11 @@ class _$AuthEventTearOff {
     return const _CheckConnectivityStatus();
   }
 
-  _AddData addData({required InfoModel data}) {
+  _GetSignedInUser getSignedInUser() {
+    return const _GetSignedInUser();
+  }
+
+  _AddData addData({required RestaurantModel data}) {
     return _AddData(
       data: data,
     );
@@ -80,6 +93,10 @@ class _$AuthEventTearOff {
       orderBy: orderBy,
     );
   }
+
+  _GetUserLocationName getUserLocationName() {
+    return const _GetUserLocationName();
+  }
 }
 
 /// @nodoc
@@ -89,54 +106,63 @@ const $AuthEvent = _$AuthEventTearOff();
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -148,16 +174,17 @@ mixin _$AuthEvent {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -168,13 +195,15 @@ mixin _$AuthEvent {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -185,13 +214,15 @@ mixin _$AuthEvent {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -218,7 +249,7 @@ abstract class _$RegisterWithEmailAndPasswordCopyWith<$Res> {
           _RegisterWithEmailAndPassword value,
           $Res Function(_RegisterWithEmailAndPassword) then) =
       __$RegisterWithEmailAndPasswordCopyWithImpl<$Res>;
-  $Res call({String email, String password});
+  $Res call({String email, String name, String mobileNumber, String password});
 }
 
 /// @nodoc
@@ -237,12 +268,22 @@ class __$RegisterWithEmailAndPasswordCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = freezed,
+    Object? name = freezed,
+    Object? mobileNumber = freezed,
     Object? password = freezed,
   }) {
     return _then(_RegisterWithEmailAndPassword(
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      mobileNumber: mobileNumber == freezed
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
               as String,
       password: password == freezed
           ? _value.password
@@ -256,16 +297,23 @@ class __$RegisterWithEmailAndPasswordCopyWithImpl<$Res>
 
 class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
   const _$_RegisterWithEmailAndPassword(
-      {required this.email, required this.password});
+      {required this.email,
+      required this.name,
+      required this.mobileNumber,
+      required this.password});
 
   @override
   final String email;
+  @override
+  final String name;
+  @override
+  final String mobileNumber;
   @override
   final String password;
 
   @override
   String toString() {
-    return 'AuthEvent.registerWithEmailAndPassword(email: $email, password: $password)';
+    return 'AuthEvent.registerWithEmailAndPassword(email: $email, name: $name, mobileNumber: $mobileNumber, password: $password)';
   }
 
   @override
@@ -274,6 +322,9 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
         (other.runtimeType == runtimeType &&
             other is _RegisterWithEmailAndPassword &&
             const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.mobileNumber, mobileNumber) &&
             const DeepCollectionEquality().equals(other.password, password));
   }
 
@@ -281,6 +332,8 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(mobileNumber),
       const DeepCollectionEquality().hash(password));
 
   @JsonKey(ignore: true)
@@ -292,64 +345,74 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) {
-    return registerWithEmailAndPassword(email, password);
+    return registerWithEmailAndPassword(email, name, mobileNumber, password);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) {
-    return registerWithEmailAndPassword?.call(email, password);
+    return registerWithEmailAndPassword?.call(
+        email, name, mobileNumber, password);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) {
     if (registerWithEmailAndPassword != null) {
-      return registerWithEmailAndPassword(email, password);
+      return registerWithEmailAndPassword(email, name, mobileNumber, password);
     }
     return orElse();
   }
@@ -363,16 +426,17 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) {
     return registerWithEmailAndPassword(this);
   }
@@ -386,13 +450,15 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) {
     return registerWithEmailAndPassword?.call(this);
   }
@@ -406,13 +472,15 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) {
     if (registerWithEmailAndPassword != null) {
@@ -425,9 +493,13 @@ class _$_RegisterWithEmailAndPassword implements _RegisterWithEmailAndPassword {
 abstract class _RegisterWithEmailAndPassword implements AuthEvent {
   const factory _RegisterWithEmailAndPassword(
       {required String email,
+      required String name,
+      required String mobileNumber,
       required String password}) = _$_RegisterWithEmailAndPassword;
 
   String get email;
+  String get name;
+  String get mobileNumber;
   String get password;
   @JsonKey(ignore: true)
   _$RegisterWithEmailAndPasswordCopyWith<_RegisterWithEmailAndPassword>
@@ -514,20 +586,23 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) {
     return signInWithEmailAndPassword(mobileNumber, password);
   }
@@ -535,19 +610,22 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) {
     return signInWithEmailAndPassword?.call(mobileNumber, password);
   }
@@ -555,19 +633,22 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) {
     if (signInWithEmailAndPassword != null) {
@@ -585,16 +666,17 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) {
     return signInWithEmailAndPassword(this);
   }
@@ -608,13 +690,15 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) {
     return signInWithEmailAndPassword?.call(this);
   }
@@ -628,13 +712,15 @@ class _$_SignInWithEmailAndPassword implements _SignInWithEmailAndPassword {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) {
     if (signInWithEmailAndPassword != null) {
@@ -694,20 +780,23 @@ class _$SignOut implements SignOut {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) {
     return signOut();
   }
@@ -715,19 +804,22 @@ class _$SignOut implements SignOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) {
     return signOut?.call();
   }
@@ -735,19 +827,22 @@ class _$SignOut implements SignOut {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -765,16 +860,17 @@ class _$SignOut implements SignOut {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) {
     return signOut(this);
   }
@@ -788,13 +884,15 @@ class _$SignOut implements SignOut {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) {
     return signOut?.call(this);
   }
@@ -808,13 +906,15 @@ class _$SignOut implements SignOut {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -868,20 +968,23 @@ class _$CheckAuthState implements CheckAuthState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) {
     return checkAuthState();
   }
@@ -889,19 +992,22 @@ class _$CheckAuthState implements CheckAuthState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) {
     return checkAuthState?.call();
   }
@@ -909,19 +1015,22 @@ class _$CheckAuthState implements CheckAuthState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) {
     if (checkAuthState != null) {
@@ -939,16 +1048,17 @@ class _$CheckAuthState implements CheckAuthState {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) {
     return checkAuthState(this);
   }
@@ -962,13 +1072,15 @@ class _$CheckAuthState implements CheckAuthState {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) {
     return checkAuthState?.call(this);
   }
@@ -982,13 +1094,15 @@ class _$CheckAuthState implements CheckAuthState {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) {
     if (checkAuthState != null) {
@@ -1007,7 +1121,7 @@ abstract class _$SendEmailConfirmationCopyWith<$Res> {
   factory _$SendEmailConfirmationCopyWith(_SendEmailConfirmation value,
           $Res Function(_SendEmailConfirmation) then) =
       __$SendEmailConfirmationCopyWithImpl<$Res>;
-  $Res call({String email});
+  $Res call({String mobileNumber, String otp});
 }
 
 /// @nodoc
@@ -1023,12 +1137,17 @@ class __$SendEmailConfirmationCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? email = freezed,
+    Object? mobileNumber = freezed,
+    Object? otp = freezed,
   }) {
     return _then(_SendEmailConfirmation(
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      mobileNumber: mobileNumber == freezed
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      otp: otp == freezed
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -1037,14 +1156,17 @@ class __$SendEmailConfirmationCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SendEmailConfirmation implements _SendEmailConfirmation {
-  const _$_SendEmailConfirmation({required this.email});
+  const _$_SendEmailConfirmation(
+      {required this.mobileNumber, required this.otp});
 
   @override
-  final String email;
+  final String mobileNumber;
+  @override
+  final String otp;
 
   @override
   String toString() {
-    return 'AuthEvent.sendEmailConfirmation(email: $email)';
+    return 'AuthEvent.verifyOtp(mobileNumber: $mobileNumber, otp: $otp)';
   }
 
   @override
@@ -1052,12 +1174,16 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SendEmailConfirmation &&
-            const DeepCollectionEquality().equals(other.email, email));
+            const DeepCollectionEquality()
+                .equals(other.mobileNumber, mobileNumber) &&
+            const DeepCollectionEquality().equals(other.otp, otp));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(email));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(mobileNumber),
+      const DeepCollectionEquality().hash(otp));
 
   @JsonKey(ignore: true)
   @override
@@ -1068,64 +1194,73 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) {
-    return sendEmailConfirmation(email);
+    return verifyOtp(mobileNumber, otp);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) {
-    return sendEmailConfirmation?.call(email);
+    return verifyOtp?.call(mobileNumber, otp);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) {
-    if (sendEmailConfirmation != null) {
-      return sendEmailConfirmation(email);
+    if (verifyOtp != null) {
+      return verifyOtp(mobileNumber, otp);
     }
     return orElse();
   }
@@ -1139,18 +1274,19 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) {
-    return sendEmailConfirmation(this);
+    return verifyOtp(this);
   }
 
   @override
@@ -1162,15 +1298,17 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) {
-    return sendEmailConfirmation?.call(this);
+    return verifyOtp?.call(this);
   }
 
   @override
@@ -1182,27 +1320,31 @@ class _$_SendEmailConfirmation implements _SendEmailConfirmation {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) {
-    if (sendEmailConfirmation != null) {
-      return sendEmailConfirmation(this);
+    if (verifyOtp != null) {
+      return verifyOtp(this);
     }
     return orElse();
   }
 }
 
 abstract class _SendEmailConfirmation implements AuthEvent {
-  const factory _SendEmailConfirmation({required String email}) =
-      _$_SendEmailConfirmation;
+  const factory _SendEmailConfirmation(
+      {required String mobileNumber,
+      required String otp}) = _$_SendEmailConfirmation;
 
-  String get email;
+  String get mobileNumber;
+  String get otp;
   @JsonKey(ignore: true)
   _$SendEmailConfirmationCopyWith<_SendEmailConfirmation> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1213,6 +1355,7 @@ abstract class _$DeleteAccountCopyWith<$Res> {
   factory _$DeleteAccountCopyWith(
           _DeleteAccount value, $Res Function(_DeleteAccount) then) =
       __$DeleteAccountCopyWithImpl<$Res>;
+  $Res call({String mobileNumber});
 }
 
 /// @nodoc
@@ -1224,88 +1367,121 @@ class __$DeleteAccountCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
 
   @override
   _DeleteAccount get _value => super._value as _DeleteAccount;
+
+  @override
+  $Res call({
+    Object? mobileNumber = freezed,
+  }) {
+    return _then(_DeleteAccount(
+      mobileNumber: mobileNumber == freezed
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_DeleteAccount implements _DeleteAccount {
-  const _$_DeleteAccount();
+  const _$_DeleteAccount({required this.mobileNumber});
+
+  @override
+  final String mobileNumber;
 
   @override
   String toString() {
-    return 'AuthEvent.deleteAcccount()';
+    return 'AuthEvent.sendOtp(mobileNumber: $mobileNumber)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _DeleteAccount);
+        (other.runtimeType == runtimeType &&
+            other is _DeleteAccount &&
+            const DeepCollectionEquality()
+                .equals(other.mobileNumber, mobileNumber));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(mobileNumber));
+
+  @JsonKey(ignore: true)
+  @override
+  _$DeleteAccountCopyWith<_DeleteAccount> get copyWith =>
+      __$DeleteAccountCopyWithImpl<_DeleteAccount>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) {
-    return deleteAcccount();
+    return sendOtp(mobileNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) {
-    return deleteAcccount?.call();
+    return sendOtp?.call(mobileNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) {
-    if (deleteAcccount != null) {
-      return deleteAcccount();
+    if (sendOtp != null) {
+      return sendOtp(mobileNumber);
     }
     return orElse();
   }
@@ -1319,18 +1495,19 @@ class _$_DeleteAccount implements _DeleteAccount {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) {
-    return deleteAcccount(this);
+    return sendOtp(this);
   }
 
   @override
@@ -1342,15 +1519,17 @@ class _$_DeleteAccount implements _DeleteAccount {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) {
-    return deleteAcccount?.call(this);
+    return sendOtp?.call(this);
   }
 
   @override
@@ -1362,24 +1541,32 @@ class _$_DeleteAccount implements _DeleteAccount {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) {
-    if (deleteAcccount != null) {
-      return deleteAcccount(this);
+    if (sendOtp != null) {
+      return sendOtp(this);
     }
     return orElse();
   }
 }
 
 abstract class _DeleteAccount implements AuthEvent {
-  const factory _DeleteAccount() = _$_DeleteAccount;
+  const factory _DeleteAccount({required String mobileNumber}) =
+      _$_DeleteAccount;
+
+  String get mobileNumber;
+  @JsonKey(ignore: true)
+  _$DeleteAccountCopyWith<_DeleteAccount> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1448,20 +1635,23 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) {
     return updateEmailAddress(updatedEmail);
   }
@@ -1469,19 +1659,22 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) {
     return updateEmailAddress?.call(updatedEmail);
   }
@@ -1489,19 +1682,22 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) {
     if (updateEmailAddress != null) {
@@ -1519,16 +1715,17 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) {
     return updateEmailAddress(this);
   }
@@ -1542,13 +1739,15 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) {
     return updateEmailAddress?.call(this);
   }
@@ -1562,13 +1761,15 @@ class _$_UpdateEmailAddress implements _UpdateEmailAddress {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) {
     if (updateEmailAddress != null) {
@@ -1655,20 +1856,23 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) {
     return updateConnectivityStatus(status);
   }
@@ -1676,19 +1880,22 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) {
     return updateConnectivityStatus?.call(status);
   }
@@ -1696,19 +1903,22 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) {
     if (updateConnectivityStatus != null) {
@@ -1726,16 +1936,17 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) {
     return updateConnectivityStatus(this);
   }
@@ -1749,13 +1960,15 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) {
     return updateConnectivityStatus?.call(this);
   }
@@ -1769,13 +1982,15 @@ class _$_UpdateConnectivityStatus implements _UpdateConnectivityStatus {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) {
     if (updateConnectivityStatus != null) {
@@ -1837,20 +2052,23 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) {
     return checkConnectivityStatus();
   }
@@ -1858,19 +2076,22 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) {
     return checkConnectivityStatus?.call();
   }
@@ -1878,19 +2099,22 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) {
     if (checkConnectivityStatus != null) {
@@ -1908,16 +2132,17 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) {
     return checkConnectivityStatus(this);
   }
@@ -1931,13 +2156,15 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) {
     return checkConnectivityStatus?.call(this);
   }
@@ -1951,13 +2178,15 @@ class _$_CheckConnectivityStatus implements _CheckConnectivityStatus {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) {
     if (checkConnectivityStatus != null) {
@@ -1972,10 +2201,198 @@ abstract class _CheckConnectivityStatus implements AuthEvent {
 }
 
 /// @nodoc
+abstract class _$GetSignedInUserCopyWith<$Res> {
+  factory _$GetSignedInUserCopyWith(
+          _GetSignedInUser value, $Res Function(_GetSignedInUser) then) =
+      __$GetSignedInUserCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetSignedInUserCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$GetSignedInUserCopyWith<$Res> {
+  __$GetSignedInUserCopyWithImpl(
+      _GetSignedInUser _value, $Res Function(_GetSignedInUser) _then)
+      : super(_value, (v) => _then(v as _GetSignedInUser));
+
+  @override
+  _GetSignedInUser get _value => super._value as _GetSignedInUser;
+}
+
+/// @nodoc
+
+class _$_GetSignedInUser implements _GetSignedInUser {
+  const _$_GetSignedInUser();
+
+  @override
+  String toString() {
+    return 'AuthEvent.getSignedInUser()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _GetSignedInUser);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
+        registerWithEmailAndPassword,
+    required TResult Function(String mobileNumber, String password)
+        signInWithEmailAndPassword,
+    required TResult Function() signOut,
+    required TResult Function() checkAuthState,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
+    required TResult Function(String updatedEmail) updateEmailAddress,
+    required TResult Function(ConnectivityResult status)
+        updateConnectivityStatus,
+    required TResult Function() checkConnectivityStatus,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
+  }) {
+    return getSignedInUser();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
+        registerWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
+    TResult Function()? signOut,
+    TResult Function()? checkAuthState,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
+    TResult Function(String updatedEmail)? updateEmailAddress,
+    TResult Function(ConnectivityResult status)? updateConnectivityStatus,
+    TResult Function()? checkConnectivityStatus,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
+  }) {
+    return getSignedInUser?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
+        registerWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
+    TResult Function()? signOut,
+    TResult Function()? checkAuthState,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
+    TResult Function(String updatedEmail)? updateEmailAddress,
+    TResult Function(ConnectivityResult status)? updateConnectivityStatus,
+    TResult Function()? checkConnectivityStatus,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
+    required TResult orElse(),
+  }) {
+    if (getSignedInUser != null) {
+      return getSignedInUser();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RegisterWithEmailAndPassword value)
+        registerWithEmailAndPassword,
+    required TResult Function(_SignInWithEmailAndPassword value)
+        signInWithEmailAndPassword,
+    required TResult Function(SignOut value) signOut,
+    required TResult Function(CheckAuthState value) checkAuthState,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
+    required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
+    required TResult Function(_UpdateConnectivityStatus value)
+        updateConnectivityStatus,
+    required TResult Function(_CheckConnectivityStatus value)
+        checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
+  }) {
+    return getSignedInUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_RegisterWithEmailAndPassword value)?
+        registerWithEmailAndPassword,
+    TResult Function(_SignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(SignOut value)? signOut,
+    TResult Function(CheckAuthState value)? checkAuthState,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
+    TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
+    TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
+    TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
+  }) {
+    return getSignedInUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RegisterWithEmailAndPassword value)?
+        registerWithEmailAndPassword,
+    TResult Function(_SignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(SignOut value)? signOut,
+    TResult Function(CheckAuthState value)? checkAuthState,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
+    TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
+    TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
+    TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
+    required TResult orElse(),
+  }) {
+    if (getSignedInUser != null) {
+      return getSignedInUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSignedInUser implements AuthEvent {
+  const factory _GetSignedInUser() = _$_GetSignedInUser;
+}
+
+/// @nodoc
 abstract class _$AddDataCopyWith<$Res> {
   factory _$AddDataCopyWith(_AddData value, $Res Function(_AddData) then) =
       __$AddDataCopyWithImpl<$Res>;
-  $Res call({InfoModel data});
+  $Res call({RestaurantModel data});
 }
 
 /// @nodoc
@@ -1995,7 +2412,7 @@ class __$AddDataCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as InfoModel,
+              as RestaurantModel,
     ));
   }
 }
@@ -2006,7 +2423,7 @@ class _$_AddData implements _AddData {
   const _$_AddData({required this.data});
 
   @override
-  final InfoModel data;
+  final RestaurantModel data;
 
   @override
   String toString() {
@@ -2033,20 +2450,23 @@ class _$_AddData implements _AddData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) {
     return addData(data);
   }
@@ -2054,19 +2474,22 @@ class _$_AddData implements _AddData {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) {
     return addData?.call(data);
   }
@@ -2074,19 +2497,22 @@ class _$_AddData implements _AddData {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) {
     if (addData != null) {
@@ -2104,16 +2530,17 @@ class _$_AddData implements _AddData {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) {
     return addData(this);
   }
@@ -2127,13 +2554,15 @@ class _$_AddData implements _AddData {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) {
     return addData?.call(this);
   }
@@ -2147,13 +2576,15 @@ class _$_AddData implements _AddData {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) {
     if (addData != null) {
@@ -2164,9 +2595,9 @@ class _$_AddData implements _AddData {
 }
 
 abstract class _AddData implements AuthEvent {
-  const factory _AddData({required InfoModel data}) = _$_AddData;
+  const factory _AddData({required RestaurantModel data}) = _$_AddData;
 
-  InfoModel get data;
+  RestaurantModel get data;
   @JsonKey(ignore: true)
   _$AddDataCopyWith<_AddData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2237,20 +2668,23 @@ class _$_changeSortByOrder implements _changeSortByOrder {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
         registerWithEmailAndPassword,
     required TResult Function(String mobileNumber, String password)
         signInWithEmailAndPassword,
     required TResult Function() signOut,
     required TResult Function() checkAuthState,
-    required TResult Function(String email) sendEmailConfirmation,
-    required TResult Function() deleteAcccount,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
     required TResult Function(String updatedEmail) updateEmailAddress,
     required TResult Function(ConnectivityResult status)
         updateConnectivityStatus,
     required TResult Function() checkConnectivityStatus,
-    required TResult Function(InfoModel data) addData,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
     required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
   }) {
     return changeSortByOrder(orderBy);
   }
@@ -2258,19 +2692,22 @@ class _$_changeSortByOrder implements _changeSortByOrder {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
   }) {
     return changeSortByOrder?.call(orderBy);
   }
@@ -2278,19 +2715,22 @@ class _$_changeSortByOrder implements _changeSortByOrder {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)?
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
         registerWithEmailAndPassword,
     TResult Function(String mobileNumber, String password)?
         signInWithEmailAndPassword,
     TResult Function()? signOut,
     TResult Function()? checkAuthState,
-    TResult Function(String email)? sendEmailConfirmation,
-    TResult Function()? deleteAcccount,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
     TResult Function(String updatedEmail)? updateEmailAddress,
     TResult Function(ConnectivityResult status)? updateConnectivityStatus,
     TResult Function()? checkConnectivityStatus,
-    TResult Function(InfoModel data)? addData,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
     TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
     required TResult orElse(),
   }) {
     if (changeSortByOrder != null) {
@@ -2308,16 +2748,17 @@ class _$_changeSortByOrder implements _changeSortByOrder {
         signInWithEmailAndPassword,
     required TResult Function(SignOut value) signOut,
     required TResult Function(CheckAuthState value) checkAuthState,
-    required TResult Function(_SendEmailConfirmation value)
-        sendEmailConfirmation,
-    required TResult Function(_DeleteAccount value) deleteAcccount,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
     required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
     required TResult Function(_UpdateConnectivityStatus value)
         updateConnectivityStatus,
     required TResult Function(_CheckConnectivityStatus value)
         checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
     required TResult Function(_AddData value) addData,
     required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
   }) {
     return changeSortByOrder(this);
   }
@@ -2331,13 +2772,15 @@ class _$_changeSortByOrder implements _changeSortByOrder {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
   }) {
     return changeSortByOrder?.call(this);
   }
@@ -2351,13 +2794,15 @@ class _$_changeSortByOrder implements _changeSortByOrder {
         signInWithEmailAndPassword,
     TResult Function(SignOut value)? signOut,
     TResult Function(CheckAuthState value)? checkAuthState,
-    TResult Function(_SendEmailConfirmation value)? sendEmailConfirmation,
-    TResult Function(_DeleteAccount value)? deleteAcccount,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
     TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
     TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
     TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
     TResult Function(_AddData value)? addData,
     TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
     required TResult orElse(),
   }) {
     if (changeSortByOrder != null) {
@@ -2378,6 +2823,195 @@ abstract class _changeSortByOrder implements AuthEvent {
 }
 
 /// @nodoc
+abstract class _$GetUserLocationNameCopyWith<$Res> {
+  factory _$GetUserLocationNameCopyWith(_GetUserLocationName value,
+          $Res Function(_GetUserLocationName) then) =
+      __$GetUserLocationNameCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetUserLocationNameCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements _$GetUserLocationNameCopyWith<$Res> {
+  __$GetUserLocationNameCopyWithImpl(
+      _GetUserLocationName _value, $Res Function(_GetUserLocationName) _then)
+      : super(_value, (v) => _then(v as _GetUserLocationName));
+
+  @override
+  _GetUserLocationName get _value => super._value as _GetUserLocationName;
+}
+
+/// @nodoc
+
+class _$_GetUserLocationName implements _GetUserLocationName {
+  const _$_GetUserLocationName();
+
+  @override
+  String toString() {
+    return 'AuthEvent.getUserLocationName()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _GetUserLocationName);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String email, String name, String mobileNumber, String password)
+        registerWithEmailAndPassword,
+    required TResult Function(String mobileNumber, String password)
+        signInWithEmailAndPassword,
+    required TResult Function() signOut,
+    required TResult Function() checkAuthState,
+    required TResult Function(String mobileNumber, String otp) verifyOtp,
+    required TResult Function(String mobileNumber) sendOtp,
+    required TResult Function(String updatedEmail) updateEmailAddress,
+    required TResult Function(ConnectivityResult status)
+        updateConnectivityStatus,
+    required TResult Function() checkConnectivityStatus,
+    required TResult Function() getSignedInUser,
+    required TResult Function(RestaurantModel data) addData,
+    required TResult Function(String orderBy) changeSortByOrder,
+    required TResult Function() getUserLocationName,
+  }) {
+    return getUserLocationName();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
+        registerWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
+    TResult Function()? signOut,
+    TResult Function()? checkAuthState,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
+    TResult Function(String updatedEmail)? updateEmailAddress,
+    TResult Function(ConnectivityResult status)? updateConnectivityStatus,
+    TResult Function()? checkConnectivityStatus,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
+  }) {
+    return getUserLocationName?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String email, String name, String mobileNumber, String password)?
+        registerWithEmailAndPassword,
+    TResult Function(String mobileNumber, String password)?
+        signInWithEmailAndPassword,
+    TResult Function()? signOut,
+    TResult Function()? checkAuthState,
+    TResult Function(String mobileNumber, String otp)? verifyOtp,
+    TResult Function(String mobileNumber)? sendOtp,
+    TResult Function(String updatedEmail)? updateEmailAddress,
+    TResult Function(ConnectivityResult status)? updateConnectivityStatus,
+    TResult Function()? checkConnectivityStatus,
+    TResult Function()? getSignedInUser,
+    TResult Function(RestaurantModel data)? addData,
+    TResult Function(String orderBy)? changeSortByOrder,
+    TResult Function()? getUserLocationName,
+    required TResult orElse(),
+  }) {
+    if (getUserLocationName != null) {
+      return getUserLocationName();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RegisterWithEmailAndPassword value)
+        registerWithEmailAndPassword,
+    required TResult Function(_SignInWithEmailAndPassword value)
+        signInWithEmailAndPassword,
+    required TResult Function(SignOut value) signOut,
+    required TResult Function(CheckAuthState value) checkAuthState,
+    required TResult Function(_SendEmailConfirmation value) verifyOtp,
+    required TResult Function(_DeleteAccount value) sendOtp,
+    required TResult Function(_UpdateEmailAddress value) updateEmailAddress,
+    required TResult Function(_UpdateConnectivityStatus value)
+        updateConnectivityStatus,
+    required TResult Function(_CheckConnectivityStatus value)
+        checkConnectivityStatus,
+    required TResult Function(_GetSignedInUser value) getSignedInUser,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_changeSortByOrder value) changeSortByOrder,
+    required TResult Function(_GetUserLocationName value) getUserLocationName,
+  }) {
+    return getUserLocationName(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_RegisterWithEmailAndPassword value)?
+        registerWithEmailAndPassword,
+    TResult Function(_SignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(SignOut value)? signOut,
+    TResult Function(CheckAuthState value)? checkAuthState,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
+    TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
+    TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
+    TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
+  }) {
+    return getUserLocationName?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RegisterWithEmailAndPassword value)?
+        registerWithEmailAndPassword,
+    TResult Function(_SignInWithEmailAndPassword value)?
+        signInWithEmailAndPassword,
+    TResult Function(SignOut value)? signOut,
+    TResult Function(CheckAuthState value)? checkAuthState,
+    TResult Function(_SendEmailConfirmation value)? verifyOtp,
+    TResult Function(_DeleteAccount value)? sendOtp,
+    TResult Function(_UpdateEmailAddress value)? updateEmailAddress,
+    TResult Function(_UpdateConnectivityStatus value)? updateConnectivityStatus,
+    TResult Function(_CheckConnectivityStatus value)? checkConnectivityStatus,
+    TResult Function(_GetSignedInUser value)? getSignedInUser,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_changeSortByOrder value)? changeSortByOrder,
+    TResult Function(_GetUserLocationName value)? getUserLocationName,
+    required TResult orElse(),
+  }) {
+    if (getUserLocationName != null) {
+      return getUserLocationName(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetUserLocationName implements AuthEvent {
+  const factory _GetUserLocationName() = _$_GetUserLocationName;
+}
+
+/// @nodoc
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
@@ -2386,22 +3020,29 @@ class _$AuthStateTearOff {
       required bool isUserSignedin,
       required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
       required Option<Either<AuthFailure, Unit>>
+          otpVerifyFailureOrSuccessOption,
+      required Option<Either<AuthFailure, Unit>>
           deleteAccountFailureOrSuccessOption,
       required Option<Either<AuthFailure, Unit>>
           emailSendFailureOrSuccessOption,
       required Option<Either<AuthFailure, Unit>>
           updateEmailFailureOrSuccessOption,
       required bool isNetworkAvailable,
-      required String orderBy}) {
+      required String orderBy,
+      required String street,
+      required UserModel signedInUser}) {
     return _AuthState(
       isLoading: isLoading,
       isUserSignedin: isUserSignedin,
       authFailureOrSuccessOption: authFailureOrSuccessOption,
+      otpVerifyFailureOrSuccessOption: otpVerifyFailureOrSuccessOption,
       deleteAccountFailureOrSuccessOption: deleteAccountFailureOrSuccessOption,
       emailSendFailureOrSuccessOption: emailSendFailureOrSuccessOption,
       updateEmailFailureOrSuccessOption: updateEmailFailureOrSuccessOption,
       isNetworkAvailable: isNetworkAvailable,
       orderBy: orderBy,
+      street: street,
+      signedInUser: signedInUser,
     );
   }
 }
@@ -2415,6 +3056,8 @@ mixin _$AuthState {
   bool get isUserSignedin => throw _privateConstructorUsedError;
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
+  Option<Either<AuthFailure, Unit>> get otpVerifyFailureOrSuccessOption =>
+      throw _privateConstructorUsedError;
   Option<Either<AuthFailure, Unit>> get deleteAccountFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
   Option<Either<AuthFailure, Unit>> get emailSendFailureOrSuccessOption =>
@@ -2423,6 +3066,8 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   bool get isNetworkAvailable => throw _privateConstructorUsedError;
   String get orderBy => throw _privateConstructorUsedError;
+  String get street => throw _privateConstructorUsedError;
+  UserModel get signedInUser => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -2437,11 +3082,14 @@ abstract class $AuthStateCopyWith<$Res> {
       {bool isLoading,
       bool isUserSignedin,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+      Option<Either<AuthFailure, Unit>> otpVerifyFailureOrSuccessOption,
       Option<Either<AuthFailure, Unit>> deleteAccountFailureOrSuccessOption,
       Option<Either<AuthFailure, Unit>> emailSendFailureOrSuccessOption,
       Option<Either<AuthFailure, Unit>> updateEmailFailureOrSuccessOption,
       bool isNetworkAvailable,
-      String orderBy});
+      String orderBy,
+      String street,
+      UserModel signedInUser});
 }
 
 /// @nodoc
@@ -2457,11 +3105,14 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
     Object? isLoading = freezed,
     Object? isUserSignedin = freezed,
     Object? authFailureOrSuccessOption = freezed,
+    Object? otpVerifyFailureOrSuccessOption = freezed,
     Object? deleteAccountFailureOrSuccessOption = freezed,
     Object? emailSendFailureOrSuccessOption = freezed,
     Object? updateEmailFailureOrSuccessOption = freezed,
     Object? isNetworkAvailable = freezed,
     Object? orderBy = freezed,
+    Object? street = freezed,
+    Object? signedInUser = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed
@@ -2475,6 +3126,11 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
       authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AuthFailure, Unit>>,
+      otpVerifyFailureOrSuccessOption: otpVerifyFailureOrSuccessOption ==
+              freezed
+          ? _value.otpVerifyFailureOrSuccessOption
+          : otpVerifyFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<AuthFailure, Unit>>,
       deleteAccountFailureOrSuccessOption: deleteAccountFailureOrSuccessOption ==
               freezed
@@ -2499,6 +3155,14 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
           ? _value.orderBy
           : orderBy // ignore: cast_nullable_to_non_nullable
               as String,
+      street: street == freezed
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String,
+      signedInUser: signedInUser == freezed
+          ? _value.signedInUser
+          : signedInUser // ignore: cast_nullable_to_non_nullable
+              as UserModel,
     ));
   }
 }
@@ -2513,11 +3177,14 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       {bool isLoading,
       bool isUserSignedin,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+      Option<Either<AuthFailure, Unit>> otpVerifyFailureOrSuccessOption,
       Option<Either<AuthFailure, Unit>> deleteAccountFailureOrSuccessOption,
       Option<Either<AuthFailure, Unit>> emailSendFailureOrSuccessOption,
       Option<Either<AuthFailure, Unit>> updateEmailFailureOrSuccessOption,
       bool isNetworkAvailable,
-      String orderBy});
+      String orderBy,
+      String street,
+      UserModel signedInUser});
 }
 
 /// @nodoc
@@ -2534,11 +3201,14 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     Object? isLoading = freezed,
     Object? isUserSignedin = freezed,
     Object? authFailureOrSuccessOption = freezed,
+    Object? otpVerifyFailureOrSuccessOption = freezed,
     Object? deleteAccountFailureOrSuccessOption = freezed,
     Object? emailSendFailureOrSuccessOption = freezed,
     Object? updateEmailFailureOrSuccessOption = freezed,
     Object? isNetworkAvailable = freezed,
     Object? orderBy = freezed,
+    Object? street = freezed,
+    Object? signedInUser = freezed,
   }) {
     return _then(_AuthState(
       isLoading: isLoading == freezed
@@ -2552,6 +3222,11 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
       authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AuthFailure, Unit>>,
+      otpVerifyFailureOrSuccessOption: otpVerifyFailureOrSuccessOption ==
+              freezed
+          ? _value.otpVerifyFailureOrSuccessOption
+          : otpVerifyFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<AuthFailure, Unit>>,
       deleteAccountFailureOrSuccessOption: deleteAccountFailureOrSuccessOption ==
               freezed
@@ -2576,6 +3251,14 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
           ? _value.orderBy
           : orderBy // ignore: cast_nullable_to_non_nullable
               as String,
+      street: street == freezed
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String,
+      signedInUser: signedInUser == freezed
+          ? _value.signedInUser
+          : signedInUser // ignore: cast_nullable_to_non_nullable
+              as UserModel,
     ));
   }
 }
@@ -2587,11 +3270,14 @@ class _$_AuthState implements _AuthState {
       {required this.isLoading,
       required this.isUserSignedin,
       required this.authFailureOrSuccessOption,
+      required this.otpVerifyFailureOrSuccessOption,
       required this.deleteAccountFailureOrSuccessOption,
       required this.emailSendFailureOrSuccessOption,
       required this.updateEmailFailureOrSuccessOption,
       required this.isNetworkAvailable,
-      required this.orderBy});
+      required this.orderBy,
+      required this.street,
+      required this.signedInUser});
 
   @override
   final bool isLoading;
@@ -2599,6 +3285,8 @@ class _$_AuthState implements _AuthState {
   final bool isUserSignedin;
   @override
   final Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption;
+  @override
+  final Option<Either<AuthFailure, Unit>> otpVerifyFailureOrSuccessOption;
   @override
   final Option<Either<AuthFailure, Unit>> deleteAccountFailureOrSuccessOption;
   @override
@@ -2609,10 +3297,14 @@ class _$_AuthState implements _AuthState {
   final bool isNetworkAvailable;
   @override
   final String orderBy;
+  @override
+  final String street;
+  @override
+  final UserModel signedInUser;
 
   @override
   String toString() {
-    return 'AuthState(isLoading: $isLoading, isUserSignedin: $isUserSignedin, authFailureOrSuccessOption: $authFailureOrSuccessOption, deleteAccountFailureOrSuccessOption: $deleteAccountFailureOrSuccessOption, emailSendFailureOrSuccessOption: $emailSendFailureOrSuccessOption, updateEmailFailureOrSuccessOption: $updateEmailFailureOrSuccessOption, isNetworkAvailable: $isNetworkAvailable, orderBy: $orderBy)';
+    return 'AuthState(isLoading: $isLoading, isUserSignedin: $isUserSignedin, authFailureOrSuccessOption: $authFailureOrSuccessOption, otpVerifyFailureOrSuccessOption: $otpVerifyFailureOrSuccessOption, deleteAccountFailureOrSuccessOption: $deleteAccountFailureOrSuccessOption, emailSendFailureOrSuccessOption: $emailSendFailureOrSuccessOption, updateEmailFailureOrSuccessOption: $updateEmailFailureOrSuccessOption, isNetworkAvailable: $isNetworkAvailable, orderBy: $orderBy, street: $street, signedInUser: $signedInUser)';
   }
 
   @override
@@ -2626,6 +3318,9 @@ class _$_AuthState implements _AuthState {
             const DeepCollectionEquality().equals(
                 other.authFailureOrSuccessOption, authFailureOrSuccessOption) &&
             const DeepCollectionEquality().equals(
+                other.otpVerifyFailureOrSuccessOption,
+                otpVerifyFailureOrSuccessOption) &&
+            const DeepCollectionEquality().equals(
                 other.deleteAccountFailureOrSuccessOption,
                 deleteAccountFailureOrSuccessOption) &&
             const DeepCollectionEquality().equals(
@@ -2636,7 +3331,10 @@ class _$_AuthState implements _AuthState {
                 updateEmailFailureOrSuccessOption) &&
             const DeepCollectionEquality()
                 .equals(other.isNetworkAvailable, isNetworkAvailable) &&
-            const DeepCollectionEquality().equals(other.orderBy, orderBy));
+            const DeepCollectionEquality().equals(other.orderBy, orderBy) &&
+            const DeepCollectionEquality().equals(other.street, street) &&
+            const DeepCollectionEquality()
+                .equals(other.signedInUser, signedInUser));
   }
 
   @override
@@ -2645,11 +3343,14 @@ class _$_AuthState implements _AuthState {
       const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(isUserSignedin),
       const DeepCollectionEquality().hash(authFailureOrSuccessOption),
+      const DeepCollectionEquality().hash(otpVerifyFailureOrSuccessOption),
       const DeepCollectionEquality().hash(deleteAccountFailureOrSuccessOption),
       const DeepCollectionEquality().hash(emailSendFailureOrSuccessOption),
       const DeepCollectionEquality().hash(updateEmailFailureOrSuccessOption),
       const DeepCollectionEquality().hash(isNetworkAvailable),
-      const DeepCollectionEquality().hash(orderBy));
+      const DeepCollectionEquality().hash(orderBy),
+      const DeepCollectionEquality().hash(street),
+      const DeepCollectionEquality().hash(signedInUser));
 
   @JsonKey(ignore: true)
   @override
@@ -2663,13 +3364,17 @@ abstract class _AuthState implements AuthState {
       required bool isUserSignedin,
       required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
       required Option<Either<AuthFailure, Unit>>
+          otpVerifyFailureOrSuccessOption,
+      required Option<Either<AuthFailure, Unit>>
           deleteAccountFailureOrSuccessOption,
       required Option<Either<AuthFailure, Unit>>
           emailSendFailureOrSuccessOption,
       required Option<Either<AuthFailure, Unit>>
           updateEmailFailureOrSuccessOption,
       required bool isNetworkAvailable,
-      required String orderBy}) = _$_AuthState;
+      required String orderBy,
+      required String street,
+      required UserModel signedInUser}) = _$_AuthState;
 
   @override
   bool get isLoading;
@@ -2677,6 +3382,8 @@ abstract class _AuthState implements AuthState {
   bool get isUserSignedin;
   @override
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption;
+  @override
+  Option<Either<AuthFailure, Unit>> get otpVerifyFailureOrSuccessOption;
   @override
   Option<Either<AuthFailure, Unit>> get deleteAccountFailureOrSuccessOption;
   @override
@@ -2687,6 +3394,10 @@ abstract class _AuthState implements AuthState {
   bool get isNetworkAvailable;
   @override
   String get orderBy;
+  @override
+  String get street;
+  @override
+  UserModel get signedInUser;
   @override
   @JsonKey(ignore: true)
   _$AuthStateCopyWith<_AuthState> get copyWith =>

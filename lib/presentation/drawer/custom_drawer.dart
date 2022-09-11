@@ -1,14 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/application/auth/auth_bloc.dart';
+
 import 'package:flutter_template/presentation/core/layout_widget/log_out_dialog.dart';
-import 'package:flutter_template/presentation/core/layout_widget/progress_dialog.dart';
 import 'package:flutter_template/presentation/core/widgets/layout/sized_boxes.dart';
 import 'package:flutter_template/presentation/drawer/widgets/drawer_tile.dart';
-import 'package:restart_app/restart_app.dart';
+import 'package:flutter_template/presentation/routes/router.gr.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -35,8 +31,10 @@ class CustomDrawer extends StatelessWidget {
                   //     : const SizedBoxH30(),
                   DrawerTile(
                     iconData: Icons.person,
-                    onTap: () async {},
-                    title: "Update Profile",
+                    onTap: () async {
+                      AutoRouter.of(context).push(const ProfileRoute());
+                    },
+                    title: "Profile",
                   ),
                   const SizedBoxH10(),
                   DrawerTile(
@@ -44,18 +42,7 @@ class CustomDrawer extends StatelessWidget {
                     onTap: () async {},
                     title: "Order History",
                   ),
-                  const SizedBoxH10(),
-                  DrawerTile(
-                    iconData: Icons.feedback,
-                    onTap: () async {},
-                    title: "Add FeedBack",
-                  ),
-                  const SizedBoxH10(),
-                  DrawerTile(
-                    iconData: Icons.help_center,
-                    onTap: () async {},
-                    title: "Help",
-                  ),
+
                   const SizedBoxH10(),
                   DrawerTile(
                     iconData: Icons.logout,

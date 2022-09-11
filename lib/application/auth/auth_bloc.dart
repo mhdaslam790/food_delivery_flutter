@@ -6,7 +6,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/domain/auth/auth_failure.dart';
 import 'package:flutter_template/domain/auth/i_auth_facade.dart';
-import 'package:flutter_template/domain/auth/info_model.dart';
+import 'package:flutter_template/domain/auth/user_model.dart';
+import 'package:flutter_template/domain/restaurant/restaurant_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -25,21 +26,75 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthEvent event,
   ) async* {
     yield* event.map(
+      getSignedInUser: (e) async* {
+        final opt = await _authFacade.getSignedInUser();
+        yield opt.fold(
+          (failure) => state.copyWith(
+            authFailureOrSuccessOption: none(),
+            emailSendFailureOrSuccessOption: none(),
+            deleteAccountFailureOrSuccessOption: none(),
+            updateEmailFailureOrSuccessOption: none(),
+          ),
+          (r) => state.copyWith(
+            signedInUser: r,
+            authFailureOrSuccessOption: none(),
+            emailSendFailureOrSuccessOption: none(),
+            deleteAccountFailureOrSuccessOption: none(),
+            updateEmailFailureOrSuccessOption: none(),
+          ),
+        );
+      },
       registerWithEmailAndPassword: (e) async* {
-        yield* _performActionOnAuthFacadeWithEmailAndPassword(
-          _authFacade.registerWithEmailAndPassword,
-          e.email,
-          e.password,
+        yield state.copyWith(
+          isLoading: true,
+          authFailureOrSuccessOption: none(),
+          emailSendFailureOrSuccessOption: none(),
+          deleteAccountFailureOrSuccessOption: none(),
+          updateEmailFailureOrSuccessOption: none(),
+        );
+
+        final opt = await _authFacade.registerWithEmailAndPassword(
+          email: e.email,
+          password: e.password,
+          name: e.name,
+          mobileNumber: e.mobileNumber,
+        );
+
+        yield state.copyWith(
+          isLoading: false,
+          isUserSignedin: opt.fold(
+            (failure) => false,
+            (success) => true,
+          ),
+          authFailureOrSuccessOption: optionOf(opt),
+          emailSendFailureOrSuccessOption: none(),
+          deleteAccountFailureOrSuccessOption: none(),
+          updateEmailFailureOrSuccessOption: none(),
         );
       },
       signInWithEmailAndPassword: (e) async* {
-        yield* _performActionOnAuthFacadeWithEmailAndPassword(
-          _authFacade.signInWithMobileAndPassword,
-          e.mobileNumber,
-          e.password,
-        );
+        final opt = await _authFacade.signInWithMobileAndPassword(
+            mobileNumber: e.mobileNumber, password: e.password);
+        yield opt.fold(
+            (failure) => state.copyWith(
+                  authFailureOrSuccessOption: some(left(failure)),
+                  emailSendFailureOrSuccessOption: none(),
+                  deleteAccountFailureOrSuccessOption: none(),
+                  updateEmailFailureOrSuccessOption: none(),
+                  otpVerifyFailureOrSuccessOption: none(),
+                ), (r) {
+          print(r.toMap());
+          return state.copyWith(
+            signedInUser: r,
+            authFailureOrSuccessOption: some(right(unit)),
+            emailSendFailureOrSuccessOption: none(),
+            deleteAccountFailureOrSuccessOption: none(),
+            updateEmailFailureOrSuccessOption: none(),
+            otpVerifyFailureOrSuccessOption: none(),
+          );
+        });
       },
-      sendEmailConfirmation: (e) async* {
+      verifyOtp: (e) async* {
         yield state.copyWith(
           isLoading: true,
           deleteAccountFailureOrSuccessOption: none(),
@@ -47,11 +102,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           authFailureOrSuccessOption: none(),
           emailSendFailureOrSuccessOption: none(),
         );
-        final failureOrSuccess =
-            await _authFacade.resetPassword(emailAddress: e.email);
+        final failureOrSuccess = await _authFacade.verifyOtp(
+          mobileNumber: e.mobileNumber,
+          otp: e.otp,
+        );
         yield state.copyWith(
           isLoading: false,
-          emailSendFailureOrSuccessOption: optionOf(failureOrSuccess),
+          otpVerifyFailureOrSuccessOption: optionOf(failureOrSuccess),
           deleteAccountFailureOrSuccessOption: none(),
           updateEmailFailureOrSuccessOption: none(),
           authFailureOrSuccessOption: none(),
@@ -76,22 +133,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           isUserSignedin: isUserSignedIn,
         );
       },
-      deleteAcccount: (e) async* {
+      sendOtp: (e) async* {
         yield state.copyWith(
-          isLoading: true,
+          isLoading: false,
           deleteAccountFailureOrSuccessOption: none(),
           updateEmailFailureOrSuccessOption: none(),
           authFailureOrSuccessOption: none(),
           emailSendFailureOrSuccessOption: none(),
+          otpVerifyFailureOrSuccessOption: none(),
         );
-        final failureOrSuccess = await _authFacade.deleteAccount();
-        yield state.copyWith(
-          isLoading: false,
-          deleteAccountFailureOrSuccessOption: optionOf(failureOrSuccess),
-          updateEmailFailureOrSuccessOption: none(),
-          authFailureOrSuccessOption: none(),
-          emailSendFailureOrSuccessOption: none(),
-        );
+        final failureOrSuccess =
+            await _authFacade.sendOtp(mobileNumber: e.mobileNumber);
       },
       updateEmailAddress: (e) async* {
         yield state.copyWith(
@@ -149,6 +201,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         yield state.copyWith(
           orderBy: e.orderBy,
         );
+      },
+      getUserLocationName: (e) async* {
+        final opt = await _authFacade.getUserLocationName();
+
+        yield opt.fold(
+            (l) => state.copyWith(), (r) => state.copyWith(street: r));
+        // yield state.copyWith(
+        //   street: opt ,
+        // );
       },
     );
   }

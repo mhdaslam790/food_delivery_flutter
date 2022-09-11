@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/app_localizations.dart';
 import 'package:flutter_template/application/auth/auth_bloc.dart';
+import 'package:flutter_template/application/restaurant/restaurant_bloc.dart';
 import 'package:flutter_template/application/settings/settings_bloc.dart';
 import 'package:flutter_template/domain/core/constants.dart';
 import 'package:flutter_template/injection.dart';
@@ -19,7 +20,14 @@ class AppWidget extends StatelessWidget {
       providers: [
         BlocProvider<AuthBloc>(
           create: (context) {
-            return getIt<AuthBloc>()..add(const AuthEvent.checkAuthState());
+            return getIt<AuthBloc>()
+              ..add(const AuthEvent.getUserLocationName())
+              ..add(const AuthEvent.checkAuthState());
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return getIt<RestaurantBloc>();
           },
         ),
         BlocProvider(
