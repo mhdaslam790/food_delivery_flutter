@@ -75,6 +75,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       signInWithEmailAndPassword: (e) async* {
         final opt = await _authFacade.signInWithMobileAndPassword(
             mobileNumber: e.mobileNumber, password: e.password);
+        yield state.copyWith(
+          authFailureOrSuccessOption: none(),
+          emailSendFailureOrSuccessOption: none(),
+          deleteAccountFailureOrSuccessOption: none(),
+          updateEmailFailureOrSuccessOption: none(),
+          otpVerifyFailureOrSuccessOption: none(),
+        );
         yield opt.fold(
             (failure) => state.copyWith(
                   authFailureOrSuccessOption: some(left(failure)),

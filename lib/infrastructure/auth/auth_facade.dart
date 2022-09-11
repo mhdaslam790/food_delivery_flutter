@@ -289,6 +289,10 @@ class AuthFacade implements IAuthFacade {
           Fluttertoast.showToast(
               msg:
                   "Enable location permission from setting. Meanwhile you can use our application with default location");
+        } else {
+          Fluttertoast.showToast(
+              msg:
+                  "Accessing location...");
         }
       }
 
